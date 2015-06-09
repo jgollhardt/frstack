@@ -13,6 +13,6 @@ tomcat_ajp_port: "{{ tomcat_base_port + 9}}"
 tomcat_user: fr
 admin_username: admin
 admin_password: admin
-tomcat_version: "8.0.21"
+tomcat_version: "8.0.23"
 tomcat_archive: "apache-tomcat-{{ tomcat_version }}.tar.gz"
 tomcat_download_url: "http://apache.cs.utah.edu/tomcat/tomcat-8/v{{ tomcat_version }}/bin/{{ tomcat_archive }}"
