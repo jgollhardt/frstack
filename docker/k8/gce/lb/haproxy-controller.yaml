@@ -1,3 +1,4 @@
+# Only need this if you do not use GCE load balancer
 apiVersion: v1beta3
 kind: ReplicationController
 metadata:
