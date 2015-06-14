@@ -17,8 +17,8 @@ datestamp: "{{ansible_date_time.year}}{{ansible_date_time.month}}{{ansible_date_
 opendj_datestamp: "{{datestamp}}"
 opendj_major: "OpenDJ-2.7.0" 
 opendj_zip: "{{opendj_major}}-{{opendj_datestamp}}.zip"
-opendj_download_url: "{{fr_downloads}}/opendj/nightly/{{opendj_datestamp}}_0130/{{opendj_zip}}"
-
+#opendj_download_url: "{{fr_downloads}}/opendj/nightly/{{opendj_datestamp}}_0130/{{opendj_zip}}"
+opendj_download_url: "http://download.forgerock.org/downloads/opendj/nightly/20150608_1104/OpenDJ-3.0.0-20150608.zip"
 # OpenAM builds
 openam_version: "13.0.0-SNAPSHOT"
 openam_zip: "OpenAM-{{openam_version}}_nightly_{{datestamp}}.zip"
