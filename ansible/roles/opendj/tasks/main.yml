@@ -17,7 +17,7 @@
   template: src=opendj.properties dest=/tmp/opendj.properties 
   
 - name: setup opendj
-  command: creates={{install_root}}/opendj/config {{install_root}}/opendj/setup --cli --propertiesFilePath /tmp/opendj.properties --acceptLicense --no-prompt 
+  command: creates={{install_root}}/opendj/config {{install_root}}/opendj/setup --cli --propertiesFilePath /tmp/opendj.properties --acceptLicense --generateSelfSignedCertificate  --no-prompt 
 
 - name: Create rc script
   command: "{{install_root}}/opendj/bin/create-rc-script -f /etc/init.d/{{opendj_service_name}} -u root"

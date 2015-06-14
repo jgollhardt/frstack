@@ -11,8 +11,8 @@ fr_user: root
 jenkins_url: "https://builds.forgerock.org/view/OpenDJ/job/OpenDJ%20-%20trunk%20-%20nightly/lastSuccessfulBuild/artifact/build/package"
 opendj_major: "OpenDJ-2.7.0"
 opendj_zip: "{{opendj_major}}-{{ansible_date_time.year}}{{ansible_date_time.month}}{{ansible_date_time.day}}.zip"
-opendj_download_url: "{{jenkins_url}}/{{opendj_zip}}"
-
+#opendj_download_url: "{{jenkins_url}}/{{opendj_zip}}"
+opendj_download_url: "http://download.forgerock.org/downloads/opendj/nightly/20150608_1104/OpenDJ-3.0.0-20150608.zip"
 # Directory Manager password
 opendj_password: password
 # BaseDN
