@@ -1,18 +1,15 @@
 #!/usr/bin/env bash
-# Prepare CTS.  A variant of the script that is in the Admin guide
+# Prepare OpenDJ for CTS.  A variant of the script that is in the Admin guide
 #
 # copyright (C) 2014 ForgeRock AS
 #
 # cts-setup.sh: This script installs and configures an external CTS data store.
-# It assumes that you have downloaded the OpenDJ zip file to a local
-# folder.
+#
 
 # Reset the tmp folder
 T=/tmp/ldif
 rm -rf $T
 mkdir $T
-
-# Define variables used in this script. Make them specific to your deployment.
 
 
 # Environment variables. Override these to change the defaults
@@ -37,15 +34,13 @@ DJ_HOSTNAME="${DJ_HOSTNAME:=opendj}"
 # Root DN for CTS
 CTS_DN="${CTS_DN:=dc=cts,dc=example,dc=com}"
 
-# OpenDJ director location. If this does not exist, the script will attempt to
+# OpenDJ directory location. If this does not exist, the script will attempt to
 # Unzip a new copy of the DJ bits
 DJ_DIR="${DJ_DIR:=opendj}"
 
-# zip of a copy of OpenDJ
+# zip of OpenDJ Distro
 DJ_ZIP="${DJ_ZIP:=OpenDJ-2.6.2.zip}"
 
-opendj/stop-ds
-rm -fr opendj
 
 if [ ! -d "$DJ_DIR" ]; then
 echo "OpenDJ does not exist. Will attempt to create instance"
@@ -71,14 +66,13 @@ EOF
 
 echo "... Unpacking OpenDJ and installing ..."
 unzip "$DJ_ZIP"
-pwd
 cd "./$DJ_DIR"
-pwd
 ./setup --cli --propertiesFilePath $T/setup.props --acceptLicense --no-prompt
 cd ..
 
 fi
 
+# At this point DJ should be installed
 cd "$DJ_DIR"
 
 echo "Attempting to start OpenDJ. If it is already running ignore any error message"
