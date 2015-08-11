@@ -1,24 +1,38 @@
 # TODO
 
+Strategies for OpenAM bootstrapping
 
-- finish openam boot script to create bootstrap
+- Mount ~/openam as a Volume. Use NFS?
+- Create contents of ~/openam on the fly - using ENV vars
 
-Here is the contents:
 
+
+
+Todos:
+   - Create a standalone persistence VM.  For OpenDJ and NFS. Possibly postgres for OpenIDM
+      (this aligns with the strategy that persistence services are probably going to live outside of Docker)
+   - Map these into k8 services
+   - prototype booting OpenAM using NFS for ~/openam
+   - prototype a script that creates ~/openam using ENV vars (keystore.jks may be an issue)
+   - Create  Apache + policy agent Docker image. Should be able to dynamically configure
+   - Create OpenIG image. Set up dynamic reverse proxy config
+   - Create OpenIDM image
+
+
+
+
+# Misc Notes:
+
+
+Here is the contents a typical openam boot file
 
 ldap://opendj:389/http%3A%2F%2Fopenam-svc-a%3A80%2Fopenam?user=cn%3Ddsameuser%2Cou%3DDSAME+Users%2Cdc%3Dexample%2Cdc%3Dcom&pwd=AQIC5wM2LY4SfczLlj6134qMTx0nkE5XiFMg&dsbasedn=dc%3Dexample%2Cdc%3Dcom&dsmgr=cn%3DDirectory+Manager&dspwd=AQIC5wM2LY4SfczLlj6134qMTx0nkE5XiFMg&ver=1.0
 
-
-Need openam/keystore.jks
-
-
-Questions:
-grab files from ssh image?
+Need way of distributing openam/keystore.jks to each OpenAM instance
 
 
-Notes:
+openam/lib/*xsl look to be legacy. Not referenced in the code
 
-   openam/lib/*xsl look to be legacy. Not referenced in the code
 
    Pass in the encryption key as ENV var, or use a default
    Need to generate the keystore, .storepass, .keypass

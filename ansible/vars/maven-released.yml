@@ -48,7 +48,6 @@ openidm_download_url: "{{jenkins}}/OpenIDM/job/OpenIDM/lastSuccessfulBuild/artif
  
 
 
-
 # Agents - cant get them on maven right now - so use Jenkins
 
 jee_agents_jenkins: "{{jenkins}}/Nightly%20agents/job/OpenAM%20Maven%20JEE%20Agents/lastSuccessfulBuild"
@@ -65,7 +64,6 @@ tomcat_agent_download_url: "{{tomcat_jenkins}}/{{tomcat_agent_zip}}"
 apache_agent_version: apache_v24_Linux_64_agent_4.0.0-SNAPSHOT
 apache_agent_zip: "{{apache_agent_version}}.zip"
 apache_agent_download_url: "http://download.forgerock.org/downloads/openam/webagents/nightly/Linux/{{apache_agent_zip}}"
-
 
 
 # HA Proxy
