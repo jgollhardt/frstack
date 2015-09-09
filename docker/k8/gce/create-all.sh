@@ -4,14 +4,14 @@ date
 # Delete any existing cluster
 #gcloud alpha container clusters -q delete openam
 
-export ZONE=us-central1-a
+export ZONE=us-central1-b
 
 
-gcloud alpha container clusters create openam --num-nodes 2 --machine-type  n1-standard-1 --zone $ZONE
+gcloud beta container clusters create openam --num-nodes 1 --machine-type  n1-standard-2 --zone $ZONE
 
 
 # Use kubectl locally
-kubectl  config use-context gke_forgerockdemo_us-central1-a_openam
+kubectl  config use-context gke_forgerockdemo_us-central1-b_openam
 
 kubectl create -f opendj-controller.yaml
 kubectl create -f opendj-service.yaml

@@ -33,4 +33,5 @@ cd ../ansible
 
 #ansible-playbook $DEBUG --user=vagrant --private-key=./.vagrant/machines/oisserver/virtualbox/private_key -i $INVENTORY frstack.yml $TAGS
 
+echo ansible-playbook $DEBUG --user=vagrant --private-key $PRIVATE_KEY -i $INVENTORY frstack.yml $TAGS
 ansible-playbook $DEBUG --user=vagrant --private-key $PRIVATE_KEY -i $INVENTORY frstack.yml $TAGS

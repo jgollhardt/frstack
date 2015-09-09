@@ -1,0 +1,19 @@
+
+- Easiest way to start/control docker containers on boot. systemd
+- Mount OpenAM home directory - use a data volume?
+- easiest way to orchestrate containers. K8?  How to easily install k8 and have it run on boot?
+- Run docker as non root
+- Find stable tomcat image. Perhaps find better proxy server
+- Docker swarm -?
+
+
+docker containers:
+openam
+opendj - datastore
+openidm nightly
+postfix
+apache + agent
+
+How do we get the agent to bootstrap?
+How do we build the docker container in the first place?
+

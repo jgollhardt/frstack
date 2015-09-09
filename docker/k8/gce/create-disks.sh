@@ -5,7 +5,7 @@
 # with ENV vars passed to the AM image that auto-create the
 # bootstrap and ~/openam
 
-export ZONE=us-central1-a
+export ZONE=us-central1-b
 
 gcloud compute disks create openam-disk-a --size 2GB  --zone $ZONE
 gcloud compute disks create openam-disk-b --size 2GB  --zone $ZONE

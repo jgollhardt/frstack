@@ -23,6 +23,7 @@
    - gpg
    - java-1.7.0-openjdk-devel
    - python-pip
+   - bzip2
 # PIP is not on Centos 7?
 
  

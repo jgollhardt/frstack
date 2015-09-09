@@ -20,8 +20,9 @@
   sudo: yes
   roles:
    - create-fr-user
-   - { role: install-base-apt, when: ansible_os_family == 'Debian', tags: ["common"]}
-   - { role: install-base-yum, when: ansible_os_family == 'RedHat', tags: ["common"]}
+   - { role: install-base-apt, when: ansible_os_family == 'Debian', tags: ["base"]}
+   - { role: install-base-yum, when: ansible_os_family == 'RedHat', tags: ["base"]}
+   - { role: k8-centos-local, tags: ["k8"]}
       
 # Play for ha-proxy server.
 - hosts: haproxy
