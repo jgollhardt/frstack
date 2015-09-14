@@ -8,24 +8,29 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #config.vm.box = "matyunin/centos7"
-    config.vm.box = "centos/7"
+    #config.vm.box = "centos/7"
+    # Moved to fedora22 for updated docker support and VB guest installed
+    config.vm.box="box-cutter/fedora22"
 
-
-    #config.ssh.private_key_path = File.expand_path('~/.vagrant.d/insecure_private_key')
 
     # Change oisserver to ois. Used by vagrant provisioner
-    config.vm.define "oisserver" do |v| 
-        #v.vm.box = "box-cutter/fedora20"
+    config.vm.define "oisserver" do |v|
         v.vm.hostname = "openam.example.com"
         v.vm.network :private_network, ip: "192.168.56.11"
     end
-    
-    config.vm.synced_folder "../staging", "/staging"
-
-  
 
     config.vm.provider :virtualbox do |vb|
   		vb.customize ["modifyvm", :id, "--memory", "2048"]
+  		# Additional disk to support Docker image storage
+  		second_disk = "docker_storage.vdi"
+  		# Create the disk if it does not exist
+  		unless  File.exist?(second_disk)
+        vb.customize ['createhd', '--filename', second_disk, '--format', 'VDI', '--size', "4096"]
+      end
+      # This adds the disk to the default IDE controller
+      # The disk should be available in Linux as /dev/sdb
+      vb.customize ['storageattach', :id, '--storagectl', 'IDE Controller', '--port', 0, '--device', 1, '--type', 'hdd',
+        '--medium', "docker_storage.vdi"]
     end
    
     config.vm.provision "ansible" do |ansible|

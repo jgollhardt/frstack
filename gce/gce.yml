@@ -12,7 +12,7 @@
     names: ois
     machine_type: n1-standard-1
     image: centos-7
-    zone: us-central1-a
+    zone: us-central1-b
     service_account_email: "224470185996-vsetlogpg407js2uogased4hkl2jr01l@developer.gserviceaccount.com"
     pem_file: "/Users/warren/etc/gce-ansible.pem"
     project_id: "forgerockdemo" 

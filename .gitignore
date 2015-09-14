@@ -4,4 +4,6 @@ tmp/
 old/
 ldif/
 .project
+staging/
 .idea
+*.vdi

@@ -3,14 +3,14 @@
 # For Fedora and Centos based images
 
 
-- name: get epel-repo 
-  get_url: dest=/tmp/epel-release.rpm  url="http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm"
-#
-- name: install epel-repo rpm
-  yum: pkg=/tmp/epel-release.rpm state=installed
+#- name: get epel-repo
+#  get_url: dest=/tmp/epel-release.rpm  url="http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm"
+##
+#- name: install epel-repo rpm
+#  yum: pkg=/tmp/epel-release.rpm state=installed
 
 - name: Install required packages
-  yum: name={{item}} state=latest
+  dnf: name={{item}} state=latest
   environment:
     proxy_env
   with_items:
@@ -21,7 +21,7 @@
    - httpd
    - tomcat
    - gpg
-   - java-1.7.0-openjdk-devel
+   - java-1.8.0-openjdk-devel
    - python-pip
    - bzip2
 # PIP is not on Centos 7?
@@ -40,7 +40,7 @@
   file: state=directory path={{install_root}} owner={{fr_user}} mode=0755
   
 # Disable SE linux and the firewall. Don't do this production!
-- command: setenforce 0 
+#- command: setenforce 0
 - selinux: state=disabled
 
 # This is not in Centos7  - so ignore any errors

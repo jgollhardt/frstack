@@ -5,7 +5,7 @@
 
 
 # download or used cached copy
-- include: ../../download.yml download_file="{{openig_zip}}" download_url="{{openig_download_url}}"
+#- include: ../../download.yml download_file="{{openig_zip}}" download_url="{{openig_download_url}}"
     
 - service: name="{{ openig_service }}" state=stopped
   
@@ -13,7 +13,7 @@
   file: path="{{tomcat_instance_dir}}/webapps/ROOT" state=absent
   
 - name: Expand the gateway war file
-  command:  /usr/bin/unzip "{{download_dir}}/{{openig_zip}}" -d "{{tomcat_instance_dir}}/webapps/ROOT"
+  command:  /usr/bin/unzip "{{staging_dir}}/openig.war" -d "{{tomcat_instance_dir}}/webapps/ROOT"
   
 #- name: Copy web.xml to put in AM filter 
 #  copy:  src=web.xml dest=/home/fr/{{tomcat_instance}}/webapps/ROOT/WEB-INF/web.xml

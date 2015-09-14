@@ -3,11 +3,11 @@
 # If you use released binaries you will need to provide the downloaded zip files in
 #  the frstack/staging/ directory, and 
 # Edit vars/released.yml with the version info
-release: nightly
-#release: staged
+#release: nightly
+release: staged
 #release: released
 #release: "maven-released"
-release: custom
+#release: custom
 
 # Use a caching proxy server if possible to speed up re-installs
 # Comment these lines out if you do not have a proxy. Note that 
@@ -16,10 +16,9 @@ proxy_env:
 #  http_proxy: http://192.168.56.1:2001
 #  https_proxy: http://192.168.56.1:2001
   foo: bar
-  
 
-# default location of the staging diretory relative to the guest 
-staging_dir: "/staging"
+# default location of the staging directory relative to the guest
+staging_dir: "/vagrant/staging"
 
 # location of downloaded software zip files relative to the guest image
 # We try to keep this consistent across environments

@@ -4,18 +4,24 @@
 # TODO: Make this work across all environments 
 #     
 # See http://docs.ansible.com/intro_getting_started.html#host-key-checking
+
+
+echo Executing vagrant up
+vagrant up
+
 export ANSIBLE_HOST_KEY_CHECKING=False
 
 SCRIPTPATH="$(cd "$(dirname "$0")"; pwd -P)"
 
 # Uncomment to debug
-DEBUG=-vvvv
+#DEBUG=-vvvv
 
-# Uncomment the correct env var here for your target
-
-# Default inventory is for vagrant
+# Default ansible inventory is setup by vagrant
 
 INVENTORY=$SCRIPTPATH/.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory
+
+PRIVATE_KEY="$SCRIPTPATH/.vagrant/machines/oisserver/virtualbox/private_key"
+
 
 export ANSIBLE_HOSTS=$INVENTORY
 
@@ -26,7 +32,7 @@ then
 	TAGS="--tags $1"
 fi
 
-PRIVATE_KEY="$SCRIPTPATH/.vagrant/machines/oisserver/virtualbox/private_key"
+
 # Run the frstack playbook 
 cd ../ansible
 #ansible-playbook $DEBUG --user=vagrant --private-key=~/.vagrant.d/insecure_private_key -i $INVENTORY frstack.yml

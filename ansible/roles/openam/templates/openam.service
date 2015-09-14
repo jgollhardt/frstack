@@ -9,7 +9,8 @@ Type=forking
 ExecStart={{install_root}}/tomcat-openam/bin/startup.sh
 ExecStop={{install_root}}/tomcat-openam/bin/shutdown.sh
 User={{fr_user}}
-Environment="JAVA_OPTS=-Djava.awt.headless=true -Xmx1024M -XX:MaxPermSize=256m"
+#Environment="JAVA_OPTS="-Xmx1024M"
+#Environment="JAVA_OPTS=-Djava.awt.headless=true -Xmx1024M"
 
 
 [Install]

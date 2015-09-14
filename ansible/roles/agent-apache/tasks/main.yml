@@ -2,11 +2,9 @@
 # Installs the Apache OpenAM agent
 # Needs to be run as root - as the Apache httpd conf dir is owned by non fr user
 
-# download agent 
-- include: ../../download.yml download_file="{{apache_agent_zip}}" download_url="{{apache_agent_download_url}}"
   
 - name: Unpack archive
-  unarchive: src="{{download_dir}}/{{apache_agent_zip}}" dest="{{install_root}}" copy=no
+  unarchive: src="{{staging_dir}}/apache_v24_agent.zip" dest="{{install_root}}" copy=no
     
 - name: create password file
   copy: src=agentpw dest="{{ webagents_home }}/agentpw"

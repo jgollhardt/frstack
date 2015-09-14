@@ -9,7 +9,7 @@
 - include: ../../openam-uninstall.yml
 
 # download openam or used cached copy
-- include: ../../download.yml download_file="{{openam_zip}}" download_url="{{openam_download_url}}"
+#- include: ../../download.yml download_file="{{openam_zip}}" download_url="{{openam_download_url}}"
   
 - name: Unpack downloaded OpenAM bits
   command: chdir="{{download_dir}}" unzip "{{openam_zip}}"
@@ -70,10 +70,7 @@
 #  - name: Run openam configurator
 #  command: creates={{install_root}}/openam/bootstrap java -jar {{ install_root }}/ssoconfigtool/openam-configurator-tool-{{ openam_version }}.jar 
 #         --file {{ install_root }}/ssoconfigtool/openam.config --acceptLicense
-         
-#- name: Run openam configurator
-#  command: creates="{{install_root}}/openam/bootstrap" java -jar "{{ install_root }}/ssoconfigtool/openam-configurator-tool-{{ openam_version }}.jar"
-#         --file "{{ install_root }}/ssoconfigtool/openam.config" "{{ openam_license_switch }}"
+
 
 # Make sure everything is owned by fr user  
 - file: recurse=yes state=directory  owner="{{ fr_user }}" 
