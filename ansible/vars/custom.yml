@@ -9,7 +9,7 @@ fr_downloads: "http://download.forgerock.org/downloads"
 
 # We try to calculate the datestamp based on when this is run. It is possible that
 # Not all artifacts are built - so you may have to manually adjust this
-datestamp: "{{ansible_date_time.year}}{{ansible_date_time.month}}{{ansible_date_time.day }}"
+datestamp: "{{ansible_date_time.year}}{{ansible_date_time.month}}{{ansible_date_time.day}}"
 
 # DJ
 # Where we can grab nightly builds

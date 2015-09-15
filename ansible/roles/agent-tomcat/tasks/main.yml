@@ -4,7 +4,6 @@
 # Download the agent or use the staged copy
 - include: ../../download.yml download_file="{{tomcat_agent_zip}}" download_url="{{tomcat_agent_download_url}}"
 
-  
 - name: Install OpenAM tomcat Agent dir. This is the master template dir
   unarchive: dest="{{install_root}}" copy=no src="{{download_dir}}/{{tomcat_agent_zip}}" 
   
@@ -26,7 +25,6 @@
 
 - name: Stop tomcat 
   service: name="{{ tomcat_instance }}" state=stopped
-  
 
 - name: Run agentadmin 
   command: "{{agent_instance_dir}}/bin/agentadmin --acceptLicense --custom-install --useResponse {{agent_instance_dir}}/{{tomcat_instance}}-response.txt"

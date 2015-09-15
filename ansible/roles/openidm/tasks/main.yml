@@ -3,10 +3,12 @@
 
 
 # download openam or used cached copy
-- include: ../../download.yml download_file="{{openidm_zip}}" download_url="{{openidm_download_url}}"
+#- include: ../../download.yml download_file="{{openidm_zip}}" download_url="{{openidm_download_url}}"
 
-- name: unpack openidm
-  command: creates="{{install_root}}/openidm" unzip "{{download_dir}}/{{openidm_zip}}" -d "{{install_root}}"
+
+- file: name="{{install_root}}" state=directory
+
+- unarchive: src="{{staging_dir}}/openidm.zip" dest="{{install_root}}" copy=no
 
 - name: copy boot to use custom ports
   template: src=boot.properties dest="{{install_root}}/openidm/conf/boot/boot.properties"

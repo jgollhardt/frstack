@@ -22,7 +22,7 @@ staging_dir: "/vagrant/staging"
 
 # location of downloaded software zip files relative to the guest image
 # We try to keep this consistent across environments
-download_dir: "/var/tmp"
+#download_dir: "/var/tmp"
  
   
 # ForgeRock User. This account will run all non root s/w (openam, openidm, etc.)

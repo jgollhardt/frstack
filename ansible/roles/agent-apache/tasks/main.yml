@@ -8,9 +8,7 @@
     
 - name: create password file
   copy: src=agentpw dest="{{ webagents_home }}/agentpw"
-  
-#- name: Copy license agreement so we don't get prompted
-#  copy: src=license.log dest={{ webagents_home }}/apache22_agent/data
+
   
 - name: Stop apache
   service: name=httpd state=stopped

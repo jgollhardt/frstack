@@ -6,21 +6,26 @@
 
 # download or used cached copy
 #- include: ../../download.yml download_file="{{openig_zip}}" download_url="{{openig_download_url}}"
-    
+
+
+# in case it is already running...
 - service: name="{{ openig_service }}" state=stopped
   
-- name: Remove the ROOT dir so we can install the gateway at the root 
-  file: path="{{tomcat_instance_dir}}/webapps/ROOT" state=absent
+# Remove the ROOT dir so we can install the gateway at the root
+
+- file: path="{{tomcat_instance_dir}}/webapps/ROOT" state=absent
+# create fresh
+- file: path="{{tomcat_instance_dir}}/webapps/ROOT" state=directory
+
   
 - name: Expand the gateway war file
-  command:  /usr/bin/unzip "{{staging_dir}}/openig.war" -d "{{tomcat_instance_dir}}/webapps/ROOT"
+  unarchive:  src="{{staging_dir}}/openig.war" dest="{{tomcat_instance_dir}}/webapps/ROOT" copy=no
   
 #- name: Copy web.xml to put in AM filter 
 #  copy:  src=web.xml dest=/home/fr/{{tomcat_instance}}/webapps/ROOT/WEB-INF/web.xml
 #  
 #- name: copy sample config.json for gateway
 #  file: path=/home/fr/.ForgeRock/OpenIG/ state=directory
-#
 #  
 #- name: copy sample config.json for gateway
 #  copy: src=config.json dest=/home/fr/.ForgeRock/OpenIG/config.json

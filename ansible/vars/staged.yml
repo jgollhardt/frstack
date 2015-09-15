@@ -2,25 +2,12 @@
 # This downloads major .0 releases from the ForgeRock maven repo
 
 
-
-maven: "http://maven.forgerock.org/repo/releases/org/forgerock"
-
-# DJ
-# Staged
-#opendj_major: "opendj-server-{{opendj_version}}" 
-opendj_version: "2.6.2"
-opendj_zip: "OpenDJ-{{opendj_version}}.zip"
-opendj_download_url: "{{opendj_zip}}"
+opendj_zip: "opendj.zip"
 
 
 # OpenAM builds
-openam_version: "12.0.0-RC3"
-openam_maven: "{{maven}}/openam/openam-distribution-kit/{{openam_version}}"
-openam_zip_file: "openam-distribution-kit-{{openam_version}}.zip"
-openam_download_url: "{{openam_maven}}/{{openam_zip_file}}"
-# Configurator License switch is for AM 12 
-openam_license_switch: "--acceptLicense"
-#openam_license_switch: ""
+openam_version: "13.0.0-SNAPSHOT"
+openam_zip: "openam.zip"
 
 # CentOS 6 comes bundled with 2.2 - not 2.4
 #apache_agent_version: "apache_v22_Linux_64_agent_4.0.0-SNAPSHOT"
@@ -32,7 +19,8 @@ apache_agent_download_url: "http://download.forgerock.org/downloads/openam/webag
 # OpenIG
 openig_version: "3.1.0-SNAPSHOT"
 openig_maven: "{{maven}}/openig/openig-war/{{openig_version}}"
-openig_zip: "OpenIG-{{openig_version}}.war"
+#openig_zip: "OpenIG-{{openig_version}}.war"
+openig_zip: "openig.war"
 openig_download_url: "{{openig_maven}}/{{openig_zip}}"
 
 ## Things that are not in Maven we get from Jenkins

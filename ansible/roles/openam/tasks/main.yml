@@ -8,12 +8,6 @@
 - pip: name=requests
 - include: ../../openam-uninstall.yml
 
-# download openam or used cached copy
-#- include: ../../download.yml download_file="{{openam_zip}}" download_url="{{openam_download_url}}"
-  
-- name: Unpack downloaded OpenAM bits
-  command: chdir="{{download_dir}}" unzip "{{openam_zip}}"
-
 # create install dir, openam dir
 - file: path="{{ install_root}}" owner="{{ fr_user }}" state="directory" 
 
@@ -28,7 +22,7 @@
 #  template: src=openam.config dest="{{ install_root }}/ssoconfigtool/openam.config" owner="{{fr_user}}" mode=0644
 
 - name: Deploy war to tomcat
-  command: creates="{{ tomcat_openam_dir }}/webapps/openam" cp "{{ download_dir }}/openam/OpenAM-{{ openam_version }}.war" "{{ tomcat_openam_dir}}/webapps/openam.war"
+  command: creates="{{ tomcat_openam_dir }}/webapps/openam" cp "{{ staging_dir }}/openam.war" "{{ tomcat_openam_dir}}/webapps/openam.war"
 
 - name: Ensure openam tomcat instance is running
   service: name="openam.service" state=restarted enabled=yes
@@ -67,6 +61,7 @@
     lb_site_name="sitea"
     lb_primary_url="{{openam_site_url}}"
 
+# This is deprecated for now. We use the ssoconfigure module above
 #  - name: Run openam configurator
 #  command: creates={{install_root}}/openam/bootstrap java -jar {{ install_root }}/ssoconfigtool/openam-configurator-tool-{{ openam_version }}.jar 
 #         --file {{ install_root }}/ssoconfigtool/openam.config --acceptLicense

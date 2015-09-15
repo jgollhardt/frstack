@@ -5,13 +5,13 @@
 #
 
 # download or used cached copy
-- include: ../../download.yml download_file="{{opendj_zip}}" download_url="{{opendj_download_url}}"
+#- include: ../../download.yml download_file="{{opendj_zip}}" download_url="{{opendj_download_url}}"
   
 - name: create install root
   file: path={{install_root}} state=directory
  
 - name: unpack opendj
-  command: chdir={{install_root}} creates={{install_root}}/opendj unzip {{ download_dir }}/{{ opendj_zip }}
+  command: chdir={{install_root}} creates={{install_root}}/opendj unzip {{ staging_dir }}/opendj.zip
 
 - name: copy opendj props file
   template: src=opendj.properties dest=/tmp/opendj.properties 

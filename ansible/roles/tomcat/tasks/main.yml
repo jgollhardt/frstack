@@ -39,8 +39,10 @@
 - name: Change ownership of Tomcat installation
   file: path={{ tomcat_instance_dir }} owner={{ tomcat_user }} state=directory recurse=yes
 
-- name: Start Tomcat
-  service: name={{ tomcat_instance }}.service state=restarted enabled=yes
 
-- name: wait for tomcat to start
-  wait_for: port={{tomcat_http_port }} delay=10
+# We usually end up stopping tomcat to deploy war files anyways - so this should speed things up
+#- name: Start Tomcat
+#  service: name={{ tomcat_instance }}.service state=restarted enabled=yes
+
+#- name: wait for tomcat to start
+#  wait_for: port={{tomcat_http_port }} delay=10
