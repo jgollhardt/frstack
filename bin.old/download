@@ -1,5 +1,0 @@
-#!/bin/sh 
-# Download nightly builds 
-DEBUG=-v
-
-ansible-playbook $DEBUG -i hosts download_nightly.yml

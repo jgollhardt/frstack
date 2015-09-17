@@ -1,4 +1,0 @@
-# ignore everything in staging
-*
-# except this file
-!.gitignore

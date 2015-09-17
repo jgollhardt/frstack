@@ -1,7 +1,0 @@
-#!/bin/bash
-# Utility to clean up ssh keys from your ~/.ssh/known_hosts
-# If you reinstall your vagrant image you will need to clean up the keys as they
-# will get generated again
-ssh-keygen -R vagrant
-ssh-keygen -R openam.example.com
-

@@ -1,5 +1,6 @@
 ---
 # Download S/W to the *hosts* staging dir
+# DEPRECATED- NO LONGER USED
 # This can be used to 
 # Run this with ansible-playbook -i ../etc/hosts download_sw.yml
 

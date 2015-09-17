@@ -14,8 +14,8 @@
   environment:
     proxy_env
  
-- name: copy haproxy.cfg
-  copy: src=haproxy.cfg dest=/etc/haproxy/haproxy.cfg owner=root
+- name: create haproxy.cfg
+  template: src=haproxy.cfg dest=/etc/haproxy/haproxy.cfg owner=root
   
 - name: create self-signed SSL cert for haproxy
   command: creates=/etc/pki/tls/certs/haproxy.crt openssl req -new -nodes -x509 -subj "/C=CA/ST=AB/L=Calgary/O=ForgeRock/CN=openam.example.com" -days 3650 

@@ -1,13 +1,4 @@
 
-# Set this to build ForgeRock released binaries vs. Nightly builds. 
-# If you use released binaries you will need to provide the downloaded zip files in
-#  the frstack/staging/ directory, and 
-# Edit vars/released.yml with the version info
-#release: nightly
-release: staged
-#release: released
-#release: "maven-released"
-#release: custom
 
 # Use a caching proxy server if possible to speed up re-installs
 # Comment these lines out if you do not have a proxy. Note that 
@@ -34,8 +25,7 @@ home_dir: "/home/{{fr_user}}"
 install_root: /opt/ois
 
 # Java home on the guest. We use openjdk by default. This is the default location. 
-#java_home: /usr/lib/jvm/java-7-openjdk-amd64
-java_home: /etc/alternatives/java_sdk
+java_home: /etc/alternatives/jre_openjdk
 
 # Config defaults
 
@@ -43,6 +33,12 @@ java_home: /etc/alternatives/java_sdk
 # This will get put in /etc/hosts by vagrant.
 # TODO: Find a better start script that puts the hostname in /etc/hosts on boot. Vagrant does this for us
 openam_hostname: "openam"
+
+# openidm FQDN. Used for haproxy routing
+# Even in a single host environment we need seperate fqdns for idm and am
+openidm_fqdn: "openidm.example.com"
+
+
 
 ### OpenAM ####
 openam_cookie_domain: ".example.com"

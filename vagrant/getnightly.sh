@@ -2,8 +2,8 @@
 # Script that downloads all nightly builds into a staging directory
 # Vagrant guests should have this staging directory mounted locally.
 # This script leaves the product names as generic (no release in the name), but creates a RELEASE file
-# with all of the version info. It is suggest to copy this RELEASE file into the guest to have a record
-# of which binaries got installed.
+# with all of the version info. It is suggested to copy this RELEASE file into the guest to have a record
+# of the binary version numbers.
 
 
 dir=./staging/

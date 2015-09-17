@@ -1,10 +1,8 @@
 ---
-# Install openam in a docker image
+# Playbook that configures openam. Assumes it is up and running. For example - to configure a docker image
 
 - hosts: 127.0.0.1
   connection: local
-  vars_files:
-    - "vars/{{release}}.yml"
   tasks:
   - name: SSO config
     ssoconfigure: server_url="{{openam_config_base}}"

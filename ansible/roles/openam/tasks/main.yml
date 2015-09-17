@@ -9,7 +9,7 @@
 - include: ../../openam-uninstall.yml
 
 # create install dir, openam dir
-- file: path="{{ install_root}}" owner="{{ fr_user }}" state="directory" 
+- file: path="{{ install_root}}" owner="{{ fr_user }}" state="directory"
 
 # Note that the openam config dir has to be writable by the user who runs the web container
 # In our case that is tomcat. TODO: Use group permissions here
@@ -68,5 +68,4 @@
 
 
 # Make sure everything is owned by fr user  
-- file: recurse=yes state=directory  owner="{{ fr_user }}" 
-     group="tomcat" path="{{ install_root}}" mode=0775
+- file: recurse=yes state=directory  owner="{{ fr_user }}"  path="{{ install_root}}" mode=0775

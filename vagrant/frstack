@@ -6,8 +6,8 @@
 # See http://docs.ansible.com/intro_getting_started.html#host-key-checking
 
 
-echo Executing vagrant up
-vagrant up
+#echo Executing vagrant up
+#vagrant up
 
 export ANSIBLE_HOST_KEY_CHECKING=False
 

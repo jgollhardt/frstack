@@ -1,5 +1,0 @@
-#!/bin/bash
-# Test for ansible access to vagrant vm
-# $1 - host on hosts file
-ansible $1 -m ping -i ./inventory/hosts  --user=vagrant --private-key=~/.vagrant.d/insecure_private_key -vvvv
-#ansible openam.example.com -m ping -i ./inventory/hosts  --user=vagrant --private-key=~/.vagrant.d/insecure_private_key -vvvv

@@ -5,8 +5,8 @@ This configuration installs all ForgeRock products on a single vagrant host. Thi
 
 ## Usage 
 
-vagrant up|Creates VM and runs ansible provisioning.
-vagrant provision| Re-run vagrant provisioning 
+vagrant up|Creates the VM and runs ansible provisioning.
+
 ./frstack [tags]|Run ansibe playbook manually. You can optional suppply a comma seperated list of tags - which will run only those tasks with the given tag.
 
 

@@ -24,9 +24,9 @@
    - { role: postfix, tags: ["postfix"]}
    - { role: logstash, tags: ["logstash"]}
    # Tomcat for adding extra apps to protect
-   - { role: tomcat-centos, tomcat_instance: 'apps', tomcat_base_port: 18000,
-       tags: ["tomcat", "apps"]}
-    # To use this role install using ansible-galaxy install  bennojoy.mysql
+#   - { role: tomcat-centos, tomcat_instance: 'apps', tomcat_base_port: 18000,
+#       tags: ["tomcat", "apps"]}
+#    # To use this role install using ansible-galaxy install  bennojoy.mysql
     # todo: how do we enable remote connect after mysql is installed.
     # as mysql - GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'foobar' WITH GRANT OPTION;
     # flush privileges;

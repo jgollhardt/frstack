@@ -35,8 +35,8 @@
 # ois - both servers
 - hosts: ois
   sudo: yes
-  vars_files:
-    - "vars/{{release}}.yml"
+#  vars_files:
+#    - "vars/{{release}}.yml"
   roles:
    - { role: apache-centos, when: ansible_os_family == 'RedHat', tags: ["http"]}
    - { role: tomcat, tomcat_instance: 'openam', tomcat_base_port: 8000,
