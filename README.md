@@ -57,6 +57,7 @@ Software is installed in the guest in the fr_home directory - which is /opt/ois.
 ## Suspending or Destroying the environment
 
 You can suspend the guest using:
+
    ```vagrant suspend```
 
 If you want to destroy the VM and clean up all the resources:
@@ -69,6 +70,7 @@ If you want to destroy the VM and clean up all the resources:
 Shell scripts are provided to re-run all or part of the provisioning process. For example,
 
 ```
+cd vagrant
 ./frstack
 ```
 
@@ -94,7 +96,13 @@ with no tags.
 
 ## Staging files
 
-For Vagrant installs, the "staging/" directory is mounted on the guest.
+For Vagrant installs, the "staging/" directory is mounted on the guest. Ansible assumes it has access
+   to all of the binaries local to the guest being installed. If you are on an environment such as
+   AWS or GCE, you will need some process to download the binaries.  See vagrant/getnightly.sh for an example.
+
+   The binary product files are expected to be generic (openam.zip, not OpenAM-13.0) -but you can include a
+   RELEASE file that lists the specific installed versions.
+
 
 
 ## The 'fr' ForgeRock user
@@ -121,7 +129,7 @@ Ansible uses ssh to connect to the guest image. To debug connection issues you c
 Edit the frstack script to set this variable (uncomment the DEBUG line).
 
 
-## VM Services
+## VM Guest Services
 
 The VM uses systemd to control all services. You can start / stop and get service status using 
 the command systemctl:
@@ -130,11 +138,12 @@ the command systemctl:
 
 Where service is one of:
 
-* tomcat-openam.service
-* openidm.service
-* tomcat-openig.service
-* tomcat-apps.service
-* haproxy.service 
+* openam
+* openidm
+* openig
+* opendj
+* apps
+* haproxy
 
 
 Use ```journalctl``` to view the system log. You can type "G" to skip to the end of the log.
@@ -153,14 +162,14 @@ long names). Most services run under this account.
 
 ### TODO
 
-If you are looking to dig in and contribute pull requests are welcome. Things that need to be done:
+If you are looking to contribute pull requests are welcome. Things that need to be done:
 
 * Start migration of instances to Docker, and then eventually to Kubernetes. The image now has docker installed ready to go
 * Make this work on both Debian / Centos / Ubuntu 15.x etc. (anything that supports systemd).
 * policy agents install is not working / not completing. It installs the agent software but does not configure
 * looks like the HOSTNAME needs to be set to the fqdn on the machine /etc/sysconfig/network  or openam config bombs out
   This is fixed for Vagrant by setting config.vm.hostname. Will need a fix for other environments
-* tomcat agent installer does not put filter in global web.xml. Need to fix up apps web.xml
+* tomcat agent installer does not put filter in global web.xml. Need to fix up apps web.xml. Apparenty 4.0 deprecates global web.xml?
 * Configure sample policies
 * Add HA, multi-master replication, et
 * Add some sample apps

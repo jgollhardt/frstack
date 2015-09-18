@@ -1,13 +1,6 @@
 ### Ansible Notes
 
-The install is split into two top level playbooks. The first playbook (vagrant.xml) primes the environment required
-for the main ForgeRock playbook (frstack.yml). Over time there will be an aws.yml playbook, a gce.yml, and so on.
-
-The first playbook is responsible for installing a few base O/S packages and for create the "fr" forgerock user under
-which the products will be installed.
-
-The second playbook "frstack.yml" does most of the heavy lifting and completes the install.
-The frstack.yml should be generic enough to run on any environment. This playbook is included from vagrant.yml .
+The frstack is the main playbook and does most of the heavy lifting.
 
 There is a work-in-progress playbook called ```fr_optional.yml``` which is where optional software
 and configuration will go.
