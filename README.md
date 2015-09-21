@@ -52,7 +52,7 @@ hosts **/etc/hosts** file. The Vagrant image is configured to use a host only IP
 * Using an ldap browser (Apache Directory Studio, for example) you can browse the user store at openam.example.com:389,   
   cn=Directory Manager / password
 
-Software is installed in the guest in the fr_home directory - which is /opt/ois.
+By default software is installed under /opt/ois. You can change this by editing ansible/group_vars/all
 
 ## Suspending or Destroying the environment
 
@@ -109,7 +109,6 @@ For Vagrant installs, the "staging/" directory is mounted on the guest. Ansible 
 
 The project runs an Ansible role called 'create-fr-user' that creates a ForgeRock user 'fr'.
 This user owns the directories and runs most of the JDKs for the stack.
-
 
 It may be handy to be able to ssh into the guest as the fr user:
 

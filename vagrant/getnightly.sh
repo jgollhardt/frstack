@@ -1,4 +1,7 @@
 #!/bin/bash
+#
+# DEPRECATED: Let's use the mvn procedure instead...
+#
 # Script that downloads all nightly builds into a staging directory
 # Vagrant guests should have this staging directory mounted locally.
 # This script leaves the product names as generic (no release in the name), but creates a RELEASE file

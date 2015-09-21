@@ -1,0 +1,19 @@
+# Test docker compose for running OpenAM
+
+# Problem: Docker-compose does not wire up OpenDJ DNS name like k8 does. OpenAM can't find its config store..
+# We can solve this by putting in the hostname of the opendj server into the containers /etc/hosts
+openam:
+  ports:
+    - "8080:8080"
+  volumes:
+    - /opt/ois/openam2:/root/openam
+  image: wstrange/openam-nightly
+  # Put our hostname in containers /etc/hosts so openam can find DJ
+  # This is a bit of a hack - but works OK for now
+  extra_hosts:
+    - "openam.example.com:192.168.56.11"
+    - "openam:192.168.56.11"
+# This can be used to link to other docker containers- but not the host
+#  external_links:
+#    - openam
+#    - openam.example.com

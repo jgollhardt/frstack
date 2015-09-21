@@ -19,6 +19,8 @@
     - etcd
 #    - golang
 
+- pip: name=docker-compose
+
 # Create a volume group on the second disk to store docker images on
 # The default docker storage is very limited on the root drive
 - lvg: vg=dockervg pvs=/dev/sdb
