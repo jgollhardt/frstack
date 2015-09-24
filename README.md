@@ -27,12 +27,16 @@ After completion of the build, the guest will have the following configured:
   
   ```brew install ansible```
 
-* Download all of the ForgeRock binaries to the staging directory: **vagrant/staging**. There
-is a shell script provided **vagrant/getnightly.sh** that will auto download all of the nightly builds for you.
+* You **must** download all of the ForgeRock binaries to the staging directory: **vagrant/staging**. There
+is a shell script provided **bin/getnightly.sh** that will auto download all of the nightly builds for you.
 * Edit ansible/group_vars/all with any environment specific configuration.
-* Execute the following:
+* Do a *vagrant up** It should just work..
+
+### Example:
+
 ```
 cd vagrant
+../bin/getnightly.sh
 vagrant up
 ```
 

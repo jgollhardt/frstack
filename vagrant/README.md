@@ -2,6 +2,8 @@
 
 This configuration installs all ForgeRock products on a single vagrant host. This is suitable for development where HA is not required. 
 
+This assumes you have pre-staged the ForgeRock binaries.  Run ../bin/getnightly.sh
+
 
 ## Usage 
 
