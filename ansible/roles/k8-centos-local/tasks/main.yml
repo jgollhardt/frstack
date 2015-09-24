@@ -12,14 +12,18 @@
 #
 
 
-# install docker. go is only needed if we want to run k8 from source
-- dnf: name={{item}} state=latest
+# install docker.
+# Todo: ansible module currently has a bug with enablerepo
+# see https://github.com/ansible/ansible-modules-extras/issues/471
+#- dnf: name={{item}} state=latest enablerepo="updates-testing"
+- command: dnf install -y --enablerepo=updates-testing {{item}}
   with_items:
     - docker
     - etcd
+    - kubernetes
+# go is only needed if we want to run k8 from source
 #    - golang
 
-- pip: name=docker-compose
 
 # Create a volume group on the second disk to store docker images on
 # The default docker storage is very limited on the root drive
@@ -28,10 +32,10 @@
 
 
 # Download Kubernetes release
-- get_url:  url=https://github.com/kubernetes/kubernetes/archive/v1.0.6.tar.gz dest=/tmp/k8_src.tar.gz
-- file: name=/opt state=directory
+#- get_url:  url=https://github.com/kubernetes/kubernetes/archive/v1.0.6.tar.gz dest=/tmp/k8_src.tar.gz
+#- file: name=/opt state=directory
 # Todo: when ansible 2.0 comes out the get_url above can be replaced with unarchive src=http....
-- unarchive: src=/tmp/k8_src.tar.gz dest=/opt copy=no
+#- unarchive: src=/tmp/k8_src.tar.gz dest=/opt copy=no
 
 # start docker
 - service: name=docker enabled=yes state=started

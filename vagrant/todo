@@ -17,3 +17,5 @@ apache + agent
 How do we get the agent to bootstrap?
 How do we build the docker container in the first place?
 
+
+Need a staging download shell script. Downloads latest bits and creates a ansible variable file

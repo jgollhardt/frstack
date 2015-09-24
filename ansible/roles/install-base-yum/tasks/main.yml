@@ -10,7 +10,7 @@
 #  yum: pkg=/tmp/epel-release.rpm state=installed
 
 - name: Install required packages. This takes a while - be patient
-  dnf: name={{item}} state=latest
+  yum: name={{item}} state=latest
   environment:
     proxy_env
   with_items:
@@ -22,6 +22,7 @@
    - gpg
    - java-1.8.0-openjdk-headless.x86_64
    - python-pip
+   - docker
    - bzip2
 # PIP is not on Centos 7?
 
@@ -29,7 +30,10 @@
 # Why do we need httplib2 ?
 #- name: Install additional python packages
 #  pip: name=httplib2
-    
+
+
+- pip: name=docker-compose
+
 
 # Note that 127.0.0.2 is also routable to localhost
 - name: Put our fqdn and short hostname in /etc/hosts

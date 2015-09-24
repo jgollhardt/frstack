@@ -1,0 +1,6 @@
+
+
+k8 image to download all the bits to a PD?
+Why do we need this if we are using docker images on the hub
+
+Better to copy images to cloud storage?

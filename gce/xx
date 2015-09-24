@@ -1,0 +1,57 @@
+#!/bin/bash 
+# Run the frstack.yml playbook
+# Any first optioanl arg is assumted to be tags to pass to the ansible-playbook command (comma delimited)
+# TODO: Make this work across all environments 
+#     
+# See http://docs.ansible.com/intro_getting_started.html#host-key-checking
+
+# note to self yum install epel-release
+
+# install bits:
+# copy pom.xml to directory, then run
+# -w == working dir , -v volume
+# docker run -it --rm --name my-maven-project -v "$PWD":/usr/src/mymaven -w /usr/src/mymaven maven:latest mvn install
+
+
+export ANSIBLE_HOST_KEY_CHECKING=False
+
+# Uncomment to debug
+#DEBUG=-vvvv
+
+SCRIPTPATH="$(cd "$(dirname "$0")"; pwd -P)"
+
+
+# Uncomment the correct env var here for your target
+
+
+# Set your GCE vars here.
+# The inventory uses a dynamic gce script to determine the GCE instance IP address.
+# See the ansible docs on dynamic inventory
+# Define GCE env vars for yor project
+export GCE_EMAIL="224470185996-vsetlogpg407js2uogased4hkl2jr01l@developer.gserviceaccount.com"
+export GCE_PEM_FILE_PATH="/Users/warren/etc/gce-ansible.pem"
+export GCE_PROJECT="forgerockdemo"
+
+#INVENTORY=$SCRIPTPATH/gce.py
+INVENTORY=$SCRIPTPATH/inventory
+
+export ANSIBLE_HOSTS=$INVENTORY
+
+# GCE uses your logged in name as the sudo user
+USER=$LOGNAME
+
+TAGS=""
+
+if [ $# -gt 0 ]
+then 
+	TAGS="--tags $1"
+fi
+
+# Run the frstack playbook 
+
+cd ../ansible
+#ansible-playbook $DEBUG -i $INVENTORY  --private-key ~/.ssh/google_compute_engine --user=$USER frstack.yml $TAGS
+
+ansible-playbook $DEBUG -i $INVENTORY frstack.yml $TAGS
+
+
