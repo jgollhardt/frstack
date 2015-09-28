@@ -3,15 +3,12 @@
 # Assumes 'java' is installed and on the path
 # TODO: Import sample ldif, schema
 #
-
-# download or used cached copy
-#- include: ../../download.yml download_file="{{opendj_zip}}" download_url="{{opendj_download_url}}"
   
 - name: create install root
   file: path={{install_root}} state=directory
  
 - name: unpack opendj
-  command: chdir={{install_root}} creates={{install_root}}/opendj unzip {{ staging_dir }}/opendj.zip
+  unarchive: copy=no src="{{ staging_dir }}/opendj.zip" dest="{{install_root}}"
 
 - name: copy opendj props file
   template: src=opendj.properties dest=/tmp/opendj.properties 
@@ -26,12 +23,11 @@
   file: path={{install_root}}/opendj state=directory owner={{fr_user}} recurse=yes
 
 # Ignore errors as the installer may start DJ
-- name: Start opendj
-  service: name={{opendj_service_name}} state=started enabled=yes
+- name: Enable opendj - ignore errors as it may already be running
+  service: name={{opendj_service_name}} enabled=yes
   ignore_errors: yes
   
 - name: Create base suffix for openam config store. This makes it easier if we want to use OpenAM later
   command: "{{install_root}}/opendj/bin/dsconfig set-backend-prop --backend-name userRoot --add base-dn:dc=openam,dc=forgerock,dc=org
     --hostname localhost --port 4444 --bindDN cn=\"Directory\ Manager\" --bindPassword {{opendj_password}}
     --trustAll --noPropertiesFile --no-prompt"
-    

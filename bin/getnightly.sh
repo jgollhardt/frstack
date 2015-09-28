@@ -104,7 +104,7 @@ for item in $items; do
    ssoadm)  download_file `grep_file $AM_SSOTOOLS_PATH zip`  ssoadmintools.zip;;
    openidm) download_file `grep_file $IDM_PATH zip` openidm.zip;;
    openig)  download_file `grep_file $IG_PATH war` openig.war;;
-   opendj)  download_file `grep_file $DJ_PATH war` opendj.zip;;
+   opendj)  download_file `grep_file $DJ_PATH zip` opendj.zip;;
    apache)  apache;;
    tomcat)  tomcat;;
    jetty)   jetty;;

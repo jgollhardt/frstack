@@ -17,3 +17,9 @@ openam:
 #  external_links:
 #    - openam
 #    - openam.example.com
+
+
+openidm:
+  ports:
+    - "9090:8080"
+  image: wstrange/openidm-nightly

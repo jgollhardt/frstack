@@ -2,9 +2,6 @@
 # This role installs common base pre-reqs for the ForgeRock stack using yum 
 # For Fedora and Centos based images
 
-
-#- name: get epel-repo
-#  get_url: dest=/tmp/epel-release.rpm  url="http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm"
 ##
 #- name: install epel-repo rpm
 #  yum: pkg=/tmp/epel-release.rpm state=installed
@@ -30,7 +27,6 @@
 # Why do we need httplib2 ?
 #- name: Install additional python packages
 #  pip: name=httplib2
-
 
 - pip: name=docker-compose
 

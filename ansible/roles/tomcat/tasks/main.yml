@@ -29,9 +29,10 @@
 
 - name: Configure Tomcat users
   template: src=tomcat-users.xml dest={{ tomcat_instance_dir }}/conf/
- 
-- name: cp setenv.sh to set jvm params
-  copy: src=setenv.sh dest="{{ tomcat_instance_dir }}/bin"
+
+# We dont really need this with JDK 8
+#- name: cp setenv.sh to set jvm params
+#  copy: src=setenv.sh dest="{{ tomcat_instance_dir }}/bin"
 
 - name: Install Tomcat init script
   template: src="tomcat.service"  dest="/etc/systemd/system/{{tomcat_instance}}.service" 
@@ -40,9 +41,8 @@
   file: path={{ tomcat_instance_dir }} owner={{ tomcat_user }} state=directory recurse=yes
 
 
-# We usually end up stopping tomcat to deploy war files anyways - so this should speed things up
-#- name: Start Tomcat
-#  service: name={{ tomcat_instance }}.service state=restarted enabled=yes
+# Enable but dont start since we probably have to stop to deploy openam
+- service: name={{ tomcat_instance }}.service enabled=yes
 
 #- name: wait for tomcat to start
 #  wait_for: port={{tomcat_http_port }} delay=10

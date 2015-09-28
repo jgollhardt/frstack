@@ -19,9 +19,11 @@
 - hosts: ois
   sudo: yes
   roles:
+#   - { role: download-nightly, tags: ["download"]}
    - create-fr-user
    - { role: install-base-apt, when: ansible_os_family == 'Debian', tags: ["base"]}
    - { role: install-base-yum, when: ansible_os_family == 'RedHat', tags: ["base"]}
+
 # Kubernetes is a bit of a pain to setup right now on a standalone OS. Let's revist this later
 #   - { role: k8-centos-local, tags: ["k8"]}
       
@@ -36,8 +38,6 @@
 # ois - both servers
 - hosts: ois
   sudo: yes
-#  vars_files:
-#    - "vars/{{release}}.yml"
   roles:
    - { role: apache-centos, when: ansible_os_family == 'RedHat', tags: ["http"]}
    - { role: tomcat, tomcat_instance: 'openam', tomcat_base_port: 8000,

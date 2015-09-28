@@ -4,10 +4,6 @@
 *NOTE: This currently works on Fedora using Vagrant. Google Compute Engine (GCE) and AWS are a
 work in progress. Other combinations have not been tested.*
 
-Installs the ForgeRock Open Identity Stack (OIS) on a Vagrant guest VM image.
-Uses [Ansible](https://github.com/ansible/ansible) to automate the installation. This has been
-tested using [Vagrant](http://www.vagrantup.com/), but with modification should work on AWS or GCE.
-
 
 ## Installed products
 
