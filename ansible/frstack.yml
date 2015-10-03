@@ -22,7 +22,7 @@
 #   - { role: download-nightly, tags: ["download"]}
    - create-fr-user
    - { role: install-base-apt, when: ansible_os_family == 'Debian', tags: ["base"]}
-   - { role: install-base-yum, when: ansible_os_family == 'RedHat', tags: ["base"]}
+   - { role: install-base-centos, when: ansible_os_family == 'RedHat', tags: ["base"]}
 
 # Kubernetes is a bit of a pain to setup right now on a standalone OS. Let's revist this later
 #   - { role: k8-centos-local, tags: ["k8"]}

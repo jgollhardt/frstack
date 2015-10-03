@@ -9,7 +9,7 @@
 
 
 - name: Install tomcat
-  yum: name=tomcat state=latest  
+  dnf: name=tomcat state=latest
   environment:
     proxy_env
 

@@ -10,7 +10,7 @@
 #  yum: name={{ download_dir }}/{{ haproxy_rpm }} state=present
 
 - name: Install haproxy
-  yum: name=haproxy state=latest 
+  dnf: name=haproxy state=latest
   environment:
     proxy_env
  
