@@ -6,6 +6,16 @@
 #- name: install epel-repo rpm
 #  yum: pkg=/tmp/epel-release.rpm state=installed
 
+
+# Workaround for https://github.com/ansible/ansible-modules-extras/issues/471
+# Remove when Ansible 2.0 package lands
+- name: Install Yum Utilities
+  sudo: true
+  shell: dnf install yum-utils -y
+  args:
+    creates: /usr/bin/repomanage
+
+
 - name: Install required packages. This takes a while - be patient
   dnf: name={{item}} state=latest
   environment:
