@@ -2,7 +2,7 @@
 # Configure two AM instances in a cluster
 # Wait until the AM instances are up before running this
 #
-apiVersion: v1beta3
+apiVersion: v1
 kind: Pod
 metadata:
   labels:

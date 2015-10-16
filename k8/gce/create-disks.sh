@@ -5,15 +5,19 @@
 # with ENV vars passed to the AM image that auto-create the
 # bootstrap and ~/openam
 
-export ZONE=us-central1-b
+export ZONE=us-central1-f
+MASTER=frstack
+#k8s-openam-master
 
-gcloud compute disks create openam-disk-a --size 2GB  --zone $ZONE
-gcloud compute disks create openam-disk-b --size 2GB  --zone $ZONE
+doit=echo
+
+$doit gcloud compute disks create openam-disk-a --size 2GB  --zone $ZONE
+$doit gcloud compute disks create openam-disk-b --size 2GB  --zone $ZONE
 
 # attach to master node for initial format
 
-gcloud compute instances attach-disk k8s-openam-master --disk openam-disk-a --zone $ZONE
-gcloud compute instances attach-disk k8s-openam-master --disk openam-disk-b --zone $ZONE
+$doit gcloud compute instances attach-disk $MASTER --disk openam-disk-a --zone $ZONE
+$doit gcloud compute instances attach-disk $MASTER --disk openam-disk-b --zone $ZONE
 
 # See https://cloud.google.com/compute/docs/disks/persistent-disks#attachdiskrunninginstance
 
@@ -21,5 +25,5 @@ gcloud compute instances attach-disk k8s-openam-master --disk openam-disk-b --zo
 # now deatach
 
 echo When the disks are formatted detach:
-echo gcloud compute instances detach-disk k8s-openam-master --disk openam-disk-a --zone $ZONE
-echo gcloud compute instances detach-disk k8s-openam-master --disk openam-disk-b --zone $ZONE
+echo gcloud compute instances detach-disk $MASTER --disk openam-disk-a --zone $ZONE
+echo gcloud compute instances detach-disk $MASTER --disk openam-disk-b --zone $ZONE
