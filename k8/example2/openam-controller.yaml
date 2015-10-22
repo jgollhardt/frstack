@@ -23,11 +23,16 @@ spec:
         ports:
         - name: openam
           containerPort: 8080
-        volumeMounts:
-        - name: openam-disk-a
-          mountPath: /root/openam
-      volumes:
-      - name: openam-disk-a
-        gcePersistentDisk:
-          pdName: openam-disk-a
-          fsType: ext4
+#        volumeMounts:
+#        - name: openam-disk-a
+#          mountPath: /root/openam
+#      volumes:
+#        - name: openam-disk-a
+#          gcePersistentDisk:
+#            pdName: openam-disk-a
+#            fsType: ext4
+##          nfs:
+#            server: 10.240.23.185
+#            path: /opt/share/openam-a
+#          persistentVolumeClaim:
+#            claimName: pv01claim

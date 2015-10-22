@@ -12,7 +12,6 @@ spec:
       name: opendj-389
   selector:
     name: opendj
-
 # Uncomment to access externally
-#  createExternalLoadBalancer: true
+  createExternalLoadBalancer: true
 

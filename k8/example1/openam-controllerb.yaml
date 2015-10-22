@@ -21,11 +21,3 @@ spec:
         - name: openam
           containerPort: 8080
           protocol: TCP
-        volumeMounts:
-        - name: openam-disk-b
-          mountPath: /root/openam
-      volumes:
-      - name: openam-disk-b
-        gcePersistentDisk:
-          pdName: openam-disk-b
-          fsType: ext4

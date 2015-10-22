@@ -4,10 +4,10 @@ metadata:
   name: frstack
 spec:
   capacity:
-    storage: 2Gi
+    storage: 4Gi
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
     path: /opt/share
-    server: 10.240.73.181
+    server: 10.240.23.185

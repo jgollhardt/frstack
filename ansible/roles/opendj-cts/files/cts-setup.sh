@@ -22,7 +22,7 @@ LDIF_DIR="${LDIF_DIR:=$HOME/openam/ldif/sfha}"
 DIR_MGR="${DIR_MGR:=cn=Directory Manager}"
 PASSWORD="${PASSWORD:=Passwr0d}"
 
-# DJ  ports
+# DJ  ports. Pick ones that are not likely to collide with an existing instance
 ADMIN_PORT="${ADMIN_PORT:=2444}"
 JMX_PORT="${JMX_PORT:=2689}"
 LDAPS_PORT="${LDAPS_PORT:=2636}"
@@ -114,8 +114,6 @@ userPassword: secret12
 ds-privilege-name: subentry-write
 ds-privilege-name: update-schema
 EOF
-
-# Unzip and install OpenDJ using the properties file
 
 
 # Create the CTS Backend
