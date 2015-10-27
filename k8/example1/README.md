@@ -1,4 +1,6 @@
 # Example showing 2 openam nodes, one opendj
 
+The OpenDJ instance and OpenAM config store is not persistent. The configuration
+will be reset once the cluster is taken down.
 
-The OpenDJ instance and the OpenAM config dirs arenot persistent - this will be reset once the cluster is taken down
+This example is for illustrative purposes only

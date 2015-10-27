@@ -1,3 +1,5 @@
+# The configurator needs to address each OpenAM node seperately to configure it
+# Hence the need to expose a each instance as a service
 apiVersion: v1
 kind: Service
 metadata:
