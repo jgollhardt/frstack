@@ -156,8 +156,11 @@ other distros that also support systemd.
 long names). Most services run under this account. 
 * To set up ssh for the fr user (so you can You can ```ssh fr@opename.example.com```)
  Add your public ssh key to roles/create-fr-user/files. Edit roles/create-fr-user/tasks/main.yml 
- to reflect the name of your pub key file.
+ to reflect the name of your pub key files
 
+### Current Issues
+
+See https://github.com/ForgeRock/frstack/issues
 
 ### TODO
 

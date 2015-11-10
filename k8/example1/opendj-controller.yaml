@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: opendj
-        image: wstrange/opendj-nightly
+        image: wstrange/opendj-nightly:latest
         ports:
         - name: ldap
           containerPort: 389

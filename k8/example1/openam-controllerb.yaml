@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: openam-b
-        image: wstrange/openam-nightly
+        image: wstrange/openam-nightly:latest
         ports:
         - name: openam
           containerPort: 8080

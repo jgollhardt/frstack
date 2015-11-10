@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: openam-a
-        image: wstrange/openam-nightly
+        image: wstrange/openam-nightly:latest
         env:
           - name: "OPENAM_INSTANCE"
             value: "openam01"
