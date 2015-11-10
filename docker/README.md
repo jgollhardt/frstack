@@ -10,8 +10,6 @@ haproxy/ - an haproxy Docker image, but also a script to run haproxy in from you
 ssoconfig/
    A Dockerfile for running the OpenAM configurator tool
 
-k8/
-   Kubernetes config files to stand up two OpenAM instances + OpenDJ
 
 
 
