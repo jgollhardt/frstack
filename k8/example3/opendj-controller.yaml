@@ -22,3 +22,11 @@ spec:
         - name: ldap
           containerPort: 389
           protocol: TCP
+        volumesMounts:
+          name: secrets
+          mountPath: /secrets
+          readOnly: true
+      volumes:
+        - name: secrets
+          secret:
+            secretName: fr-secrets
