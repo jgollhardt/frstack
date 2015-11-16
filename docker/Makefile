@@ -9,7 +9,7 @@ TAG = dev # current version: v1
 PROJECT=frstack-1077
 PREFIX = gcr.io/$(PROJECT)
 
-all: push
+all: download ssoadm openam  pushssoadm pusham
 
 download: 
 	../bin/getnightly.sh 
@@ -22,10 +22,7 @@ openam:
 	cp staging/openam.war openam
 	docker build -t $(PREFIX)/openam:$(TAG) openam
 
-container: download
-	docker build -t $(PREFIX)/ssoadm:$(TAG) .
-
-push: ssoadm
+pushssoadm: 
 	gcloud docker push $(PREFIX)/ssoadm:$(TAG)
 
 pusham: 
