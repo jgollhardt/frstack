@@ -16,14 +16,16 @@ spec:
     spec:
       containers:
       - name: openam-a
-        image: gcr.io/frstack-1077/openam:latest
-        #imagePullPolicy: Always
+        image: gcr.io/frstack-1077/openam:dev
+        imagePullPolicy: Always
         ports:
           - name: openam
             containerPort: 8080
         volumeMounts:
           - name: openam-disk-a
             mountPath: /root/openam
+          - name: secrets
+            mountPath: /secrets
       - name: ssoadm
         image: gcr.io/frstack-1077/ssoadm:dev
         volumeMounts:
@@ -34,3 +36,6 @@ spec:
           gcePersistentDisk:
             pdName: openam-disk-a
             fsType: ext4
+        - name: secrets
+          secret:
+            secretName: fr-secrets
