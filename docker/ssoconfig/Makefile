@@ -1,39 +1,15 @@
-# Makefile for the Docker image gcr.io/kube-ui/kube-ui
-# MAINTAINER: Tim St. Clair <stclair@google.com>
-# If you update this image please check the tag value before pushing.
+# Makefile
+.PHONY: all container push
 
-.PHONY: all container push clean download ssoadm openam
-
-# Keep this at dev, so no one accidentally blows away the latest published version.
-TAG = dev # current version: v1
+TAG = dev
 PROJECT=frstack-1077
 PREFIX = gcr.io/$(PROJECT)
 
 all: push
 
-download: 
-	../bin/getnightly.sh 
+container:
+   docker build -t $(PREFIX):$(TAG) .
 
-ssoadm:
-	cp staging/ssoadmintools.zip ssoadm
-	docker build -t $(PREFIX)/ssoadm:$(TAG) ssoadm
-
-openam:
-	cp staging/openam.war openam
-	docker build -t $(PREFIX)/openam:$(TAG) openam
-
-container: download
-	docker build -t $(PREFIX)/ssoadm:$(TAG) .
-
-push: ssoadm
-	gcloud docker push $(PREFIX)/ssoadm:$(TAG)
-
-pusham: 
-	gcloud docker push $(PREFIX)/openam:$(TAG)
-
-clean:
-	rm -fr staging 
-	rm openam/*war
-	rm ssoadm/*zip 
-
+push: container
+	gcloud docker push $(PREFIX)/ssoconfig:$(TAG)
 

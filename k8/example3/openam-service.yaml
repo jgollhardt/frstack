@@ -5,13 +5,12 @@ metadata:
   labels:
     name: openam-svc
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
     - port: 80
       targetPort: openam
-      protocol: "TCP"
-      name: openam-80
-  createExternalLoadBalancer: true
-  sessionAffinity: ClientIP
+      protocol: TCP
+      name: http
+      nodePort: 30080
   selector:
     site: site1

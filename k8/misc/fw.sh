@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-gcloud compute firewall-rules create kube-30301 --allow=tcp:30301
 
-gcloud compute firewall-rules create kube-30284 --allow=tcp:30284
+PORTS="30180 30080"
+
+for port in $PORTS
+do
+gcloud compute firewall-rules create kube-$port --allow tcp:$port
+done
 
 
