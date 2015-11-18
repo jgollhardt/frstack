@@ -2,14 +2,14 @@
 # MAINTAINER: Tim St. Clair <stclair@google.com>
 # If you update this image please check the tag value before pushing.
 
-.PHONY: all container push clean download ssoadm openam
+.PHONY: all container push clean download ssoadm openam ssoconfig
 
 # Keep this at dev, so no one accidentally blows away the latest published version.
-TAG = dev # current version: v1
-PROJECT=frstack-1077
-PREFIX = gcr.io/$(PROJECT)
+export TAG = dev 
+export PROJECT=frstack-1077
+export PREFIX = gcr.io/$(PROJECT)
 
-all: ssoadm
+all: ssoconfig
 
 download: 
 	../bin/getnightly.sh 
@@ -17,5 +17,6 @@ download:
 ssoadm:
 	$(MAKE) -C ssoadm
 
-
+ssoconfig: 
+	$(MAKE) -C ssoconfig
 
