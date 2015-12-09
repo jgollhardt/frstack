@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: opendj
-        image: wstrange/opendj-nightly:latest
+        image: wstrange/opendj-nightly
         ports:
         - name: ldap
           containerPort: 389
@@ -26,7 +26,13 @@ spec:
           - name: secrets
             mountPath: /secrets
             readOnly: true
+          - name: opendj-disk
+            mountPath: /opt/opendj/instance
       volumes:
         - name: secrets
           secret:
             secretName: fr-secrets
+        - name: opendj-disk
+          persistentVolumeClaim:
+            claimName: opendj-claim
+          

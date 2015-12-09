@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: openam-a
-        image: gcr.io/frstack-1077/openam:dev
+        image: wstrange/openam-nightly
         #imagePullPolicy: Always
         ports:
           - name: openam
@@ -26,13 +26,13 @@ spec:
             mountPath: /root/openam
           - name: secrets
             mountPath: /secrets
-      - name: ssoadm
-        image: gcr.io/frstack-1077/ssoadm:dev
-        volumeMounts:
-          - name: openam-disk-a
-            mountPath: /root/openam
-          - name: secrets
-            mountPath: /secrets
+      # - name: ssoadm
+      #   image: wstrange/ssoadm-nightly
+      #   volumeMounts:
+      #     - name: openam-disk-a
+      #       mountPath: /root/openam
+      #     - name: secrets
+      #       mountPath: /secrets
       volumes:
         - name: openam-disk-a
           persistentVolumeClaim:

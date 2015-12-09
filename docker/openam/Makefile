@@ -8,5 +8,5 @@ container:
 	docker build -t $(PREFIX):$(TAG) .
 
 push: container
-	gcloud docker push $(PREFIX)/ssoadm:$(TAG)
+	gcloud docker push $(PREFIX)/openam:$(TAG)
 

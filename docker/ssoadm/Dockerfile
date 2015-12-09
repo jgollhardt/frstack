@@ -1,4 +1,4 @@
-# Docker image for the OpenAM configurator tool
+# Docker image for the OpenAM ssoadm configurator tool
 FROM java:8
 
 COPY ssoadmintools.zip /var/tmp/ssoadmintools.zip

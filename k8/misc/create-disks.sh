@@ -13,6 +13,7 @@ doit=echo
 
 $doit gcloud compute disks create openam-disk-a --size 2GB  --zone $ZONE
 $doit gcloud compute disks create openam-disk-b --size 2GB  --zone $ZONE
+$doit gcloud compute disks create opendj-disk --size 2GB  --zone $ZONE
 
 # attach to master node for initial format
 
