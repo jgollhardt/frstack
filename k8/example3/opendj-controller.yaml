@@ -27,7 +27,7 @@ spec:
             mountPath: /secrets
             readOnly: true
           - name: opendj-disk
-            mountPath: /opt/opendj/instance
+            mountPath: /opt/opendj/instances/instance1
       volumes:
         - name: secrets
           secret:
