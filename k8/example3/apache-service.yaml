@@ -8,7 +8,7 @@ spec:
   #type: LoadBalancer
   ports:
     - port: 80
-      targetPort: apache
+      targetPort: 80
       nodePort: 30090
   selector:
-    site: apache
+    agent: apache
