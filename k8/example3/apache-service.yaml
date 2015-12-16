@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apache-svc
+spec:
+  type: NodePort
+  #type: ClusterIP
+  #type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: apache
+      nodePort: 30090
+  selector:
+    site: apache

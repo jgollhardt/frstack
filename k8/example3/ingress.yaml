@@ -4,11 +4,13 @@ metadata:
   name: openam
 spec:
   rules:
-  - host: openam.example.com
-    http:
+  - http:
       paths:
       - path: /openam/*
         backend:
           serviceName: openam-svc
-          # todo: is the the svc port 80, or the nodeport?
+          servicePort: 80
+      - path: /apache/*
+        backend:
+          serviceName: apache-svc
           servicePort: 80
