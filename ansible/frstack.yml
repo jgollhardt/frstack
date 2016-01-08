@@ -13,11 +13,17 @@
 # Right now this is very much dependent on Fedora/Centos packages, etc.  There is a start at making it
 # Work on other platforms - but it needs work
 
+# This play is needed to install python2 on fedora 23
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: install packages for ansible support
+      raw: sudo dnf -y -e0 -d0 install python python-dnf
 
 # These plays are common to all hosts in the stack. This installs basic packages, java, etc.
 # Put roles here that need to be run on every host in stack
 - hosts: ois
-  sudo: yes
+  become: yes
   roles:
 #   - { role: download-nightly, tags: ["download"]}
    - create-fr-user
@@ -26,16 +32,14 @@
 
 # Kubernetes is a bit of a pain to setup right now on a standalone OS. Let's revist this later
 #   - { role: k8-centos-local, tags: ["k8"]}
-      
+
 # Play for ha-proxy server.
 - hosts: haproxy
   sudo: yes
   roles:
     - { role: haproxy, tags: ["http","haproxy"]}
 
-# These are more specific to each host
-# oisa /oisb - servers a and b - for failover
-# ois - both servers
+
 - hosts: ois
   sudo: yes
   roles:
@@ -49,7 +53,8 @@
    - { role: opendj, tags: ["opendj"]}
    - { role: openidm, tags: ["openidm"]}
    - { role: openam,  tomcat_openam_dir: "{{tomcat_parent}}/openam", tags: ["openam"]}
-   - { role: ssoadm, tags: ["ssoadm"]}
+# Currently failing on new nightly builds. TODO: find out why
+#   - { role: ssoadm, tags: ["ssoadm"]}
    - { role: openig,  tags: ["openig"]}
    - { role: agent-apache, tags: ["agent", "apache", "agent-apache", "test"]}
 # Note that tomcat-agent install is currently not working.

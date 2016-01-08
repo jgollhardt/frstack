@@ -330,9 +330,9 @@ def main():
         DATA_STORE                  = data_store.decode('utf8'),
         DIRECTORY_SSL               = directory_ssl.decode('utf8'),
         DIRECTORY_SERVER            = directory_server.decode('utf8'),
-        DIRECTORY_PORT              = directory_port.decode('utf8'),
-        DIRECTORY_ADMIN_PORT        = directory_admin_port.decode('utf8'),
-        DIRECTORY_JMX_PORT          = directory_jmx_port.decode('utf8'),
+        DIRECTORY_PORT              = directory_port,
+        DIRECTORY_ADMIN_PORT        = directory_admin_port,
+        DIRECTORY_JMX_PORT          = directory_jmx_port,
         ROOT_SUFFIX                 = root_suffix.decode('utf8'),
         DS_DIRMGRDN                 = ds_dirmgrdn.decode('utf8'),
         DS_DIRMGRPASSWD             = ds_dirmgrpasswd.decode('utf8')
@@ -355,7 +355,7 @@ def main():
 
             if (userstore_type is not 'LDAPv3ForADDC') or (userstore_type is 'LDAPv3ForADDC' and userstore_domainname is None):
                 formparams['USERSTORE_HOST'] = userstore_host.decode('utf8')
-                formparams['USERSTORE_PORT'] = userstore_port.decode('utf8')
+                formparams['USERSTORE_PORT'] = userstore_port
                 formparams['USERSTORE_SUFFIX'] = userstore_suffix.decode('utf8')
         else:
             module.fail_json(msg='Not all parameters for user data store supplied')

@@ -9,8 +9,8 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #config.vm.box = "matyunin/centos7"
     #config.vm.box = "centos/7"
-    # Moved to fedora22 for updated docker support and VB guest installed
-    config.vm.box="box-cutter/fedora22"
+    # Moved to fedora23 for updated docker support and VB guest installed
+    config.vm.box="box-cutter/fedora23"
 
 
     # Change oisserver to ois. Used by vagrant provisioner

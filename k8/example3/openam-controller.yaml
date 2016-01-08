@@ -26,13 +26,13 @@ spec:
             mountPath: /root/openam
           - name: secrets
             mountPath: /secrets
-      # - name: ssoadm
-      #   image: wstrange/ssoadm-nightly
-      #   volumeMounts:
-      #     - name: openam-disk-a
-      #       mountPath: /root/openam
-      #     - name: secrets
-      #       mountPath: /secrets
+      - name: ssoadm
+        image: wstrange/ssoadm-nightly
+        volumeMounts:
+          - name: openam-disk-a
+            mountPath: /root/openam
+          - name: secrets
+            mountPath: /secrets
       volumes:
         - name: openam-disk-a
           persistentVolumeClaim:

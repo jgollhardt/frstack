@@ -1,39 +1,37 @@
 ---
-# This role installs haproxy 
+# This role installs haproxy
 
 # Fedora now has a recent 1.5 haproxy
 #- name: Get haproxy. Use custom version that supports ssl
 #  get_url: url={{haproxy_download_url }} dest={{ download_dir }}/{{ haproxy_rpm }}
-#  
-## todo: change to repo when http proxy gets ssl 
+#
+## todo: change to repo when http proxy gets ssl
 #- name: Install downloaded haproxy. yum repos do not have the latest builds that support SSL so we get a custom one
 #  yum: name={{ download_dir }}/{{ haproxy_rpm }} state=present
 
 - name: Install haproxy
   dnf: name=haproxy state=latest
-  environment:
-    proxy_env
- 
+
 - name: create haproxy.cfg
   template: src=haproxy.cfg dest=/etc/haproxy/haproxy.cfg owner=root
-  
+
 - name: create self-signed SSL cert for haproxy
-  command: creates=/etc/pki/tls/certs/haproxy.crt openssl req -new -nodes -x509 -subj "/C=CA/ST=AB/L=Calgary/O=ForgeRock/CN=openam.example.com" -days 3650 
-    -keyout /etc/pki/tls/private/haproxy.key -out /etc/pki/tls/certs/haproxy.crt 
-    -extensions v3_ca  
-    
+  command: creates=/etc/pki/tls/certs/haproxy.crt openssl req -new -nodes -x509 -subj "/C=CA/ST=AB/L=Calgary/O=ForgeRock/CN=openam.example.com" -days 3650
+    -keyout /etc/pki/tls/private/haproxy.key -out /etc/pki/tls/certs/haproxy.crt
+    -extensions v3_ca
+
 - name: Create haproxy.pem
-  shell: chdir=/etc/pki/tls creates=/etc/pki/tls/haproxy.pem /bin/cat certs/haproxy.crt private/haproxy.key > /etc/pki/tls/haproxy.pem 
-  
+  shell: chdir=/etc/pki/tls creates=/etc/pki/tls/haproxy.pem /bin/cat certs/haproxy.crt private/haproxy.key > /etc/pki/tls/haproxy.pem
+
   # we ignore errors because this is not idempotent
-- name: Delete any old certificate 
+- name: Delete any old certificate
   command:  keytool -delete -noprompt -alias openam.example.com -storepass changeit -keystore /etc/pki/java/cacerts
   ignore_errors: yes
-  
+
 # we ignore errors because this is not idempotent
 - name: Import the cert into java keystore for openam use. Ignore errors if this is run a second time
   command:  keytool -importcert -noprompt -alias openam.example.com -storepass changeit -file /etc/pki/tls/certs/haproxy.crt -trustcacerts -keystore /etc/pki/java/cacerts
   ignore_errors: yes
-  
+
 - name: Start haproxy
   service: name=haproxy state=restarted enabled=yes

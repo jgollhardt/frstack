@@ -12,31 +12,28 @@
 
 - name: copy boot to use custom ports
   template: src=boot.properties dest="{{install_root}}/openidm/conf/boot/boot.properties"
-  
-- name: config.props fix up
-  template: src=config.properties dest="{{install_root}}/openidm/conf/config.properties"
 
 # For now we skip this as a lot has changed since idm 2.x
 #- name: copy conf files
 #  copy: src=conf dest={{install_root}}/openidm mode=0644
-  
+
 #- name: copy script files
 #  copy: src=script dest={{install_root}}/openidm mode=0644
-#  
-#- name: copy workflows 
+#
+#- name: copy workflows
 #  copy: src=workflow dest={{install_root}}/openidm mode=0644
 #
-#- name: copy sample xml data 
+#- name: copy sample xml data
 #  copy: src=data dest={{install_root}}/openidm mode=0644
-  
+
 #- name: create service start up script
 #  template: src=openidm dest=/etc/init.d/openidm  mode=0755
 
-- name: Create systemd script 
+- name: Create systemd script
   template: src=openidm.service dest=/etc/systemd/system/openidm.service
-  
+
 - name: Change ownership of openidm to fr user
   file: path={{install_root}}/openidm owner={{fr_user}} state=directory recurse=yes
-  
+
 - name: Enable openidm service
   service: name=openidm.service state=restarted enabled=yes

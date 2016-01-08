@@ -1,8 +1,8 @@
-#!/bin/bash 
+#!/bin/bash
 # Run the frstack.yml playbook
 # Any optional args are tags to pass to the ansible-playbook command (comma delimited)
-# TODO: Make this work across all environments 
-#     
+# TODO: Make this work across all environments
+#
 # See http://docs.ansible.com/intro_getting_started.html#host-key-checking
 
 
@@ -28,12 +28,12 @@ export ANSIBLE_HOSTS=$INVENTORY
 TAGS=""
 
 if [ $# -gt 0 ]
-then 
+then
 	TAGS="--tags $1"
 fi
 
 
-# Run the frstack playbook 
+# Run the frstack playbook
 cd ../ansible
 #ansible-playbook $DEBUG --user=vagrant --private-key=~/.vagrant.d/insecure_private_key -i $INVENTORY frstack.yml
 

@@ -1,8 +1,14 @@
 # Install the ForgeRock Open Identity Stack (OIS)
 #
 
-*NOTE: This currently works on Fedora using Vagrant. Google Compute Engine (GCE) and AWS are a
-work in progress. Other combinations have not been tested.*
+*NOTE: Currently in the process of modifying this to use Ansible 2.0.
+You must install Ansible 2 from source*
+
+
+This currently works on Fedora 23 using Vagrant. Google Compute Engine (GCE) and AWS are a
+work in progress. Other combinations have not been tested.
+
+This will be gradually moved to Docker / Kubernetes. Pull requests are welcome
 
 
 ## Installed products
@@ -10,7 +16,7 @@ work in progress. Other combinations have not been tested.*
 After completion of the build, the guest will have the following configured:
 
 * haproxy to route ports 80/443 to various backend services. A test SSL cert is installed
-* openidm running on port 9090
+* openidm running on port 9080
 * opendj running on port 389. This is the user profile store.
 * openam running on port 8080
 * openig running on port 2080
@@ -19,8 +25,8 @@ After completion of the build, the guest will have the following configured:
 ## Quick Start
 
 * Install Ansible, VirtualBox and Vagrant. If you are on a
-  mac you can install Ansible using 
-  
+  mac you can install Ansible using
+
   ```brew install ansible```
 
 * You **must** download all of the ForgeRock binaries to the staging directory: **vagrant/staging**. There
@@ -48,7 +54,7 @@ hosts **/etc/hosts** file. The Vagrant image is configured to use a host only IP
 * View the OpenIG landing page at http://openam.example.com/openig/  
 * View the haproxy status page at https://openam.example.com/haproxy?stats
 * View the default Apache landing page at https://openam.example.com/   (Currently protected  - so you will get a 403)
-* ssh into the guest using `vagrant ssh` 
+* ssh into the guest using `vagrant ssh`
 * Using an ldap browser (Apache Directory Studio, for example) you can browse the user store at openam.example.com:389,   
   cn=Directory Manager / password
 
@@ -74,7 +80,7 @@ cd vagrant
 ./frstack
 ```
 
-Will run the entire frstack.yml playbook. 
+Will run the entire frstack.yml playbook.
 
 Ansible also supports the concept of "tags". If you want to run a subset of the playbook, provide a comma seperated value (no spaces) with a list of tags. For example:
 
@@ -112,7 +118,7 @@ This user owns the directories and runs most of the JDKs for the stack.
 
 It may be handy to be able to ssh into the guest as the fr user:
 
-```ssh fr@openam.example.com``` 
+```ssh fr@openam.example.com```
 
 The ansible create-fr-user role attempts to copy your ssh public key in ~/.ssh/id_rsa.pub (on your local host)
 to the guests /home/fr/.ssh/known_hosts. If you don't have
@@ -120,17 +126,17 @@ a public key in your ~.ssh directory create one following the
 instructions here: [https://help.github.com/articles/generating-ssh-keys/]
 
 
-## Troubleshooting 
+## Troubleshooting
 
 ### SSH Issues
 
-Ansible uses ssh to connect to the guest image. To debug connection issues you can use the -vvvv option when running the playbook. 
+Ansible uses ssh to connect to the guest image. To debug connection issues you can use the -vvvv option when running the playbook.
 Edit the frstack script to set this variable (uncomment the DEBUG line).
 
 
 ## VM Guest Services
 
-The VM uses systemd to control all services. You can start / stop and get service status using 
+The VM uses systemd to control all services. You can start / stop and get service status using
 the command systemctl:
 
 ```systemctl [start|stop|status|restart]  service```
@@ -150,17 +156,20 @@ Use ```journalctl``` to view the system log. You can type "G" to skip to the end
 
 ## Implementation Notes
 
-* The guest is currently Fedora 22. The scripts assume the use of systemd - so this should work on
-other distros that also support systemd. 
-* For consistency between environments a forgerock user is created ("fr" - because no one likes to type 
-long names). Most services run under this account. 
+* The guest is currently Fedora 23. The scripts assume the use of systemd - so this should work on
+other distros that also support systemd.
+* For consistency between environments a forgerock user is created ("fr" - because no one likes to type
+long names). Most services run under this account.
 * To set up ssh for the fr user (so you can You can ```ssh fr@opename.example.com```)
- Add your public ssh key to roles/create-fr-user/files. Edit roles/create-fr-user/tasks/main.yml 
+ Add your public ssh key to roles/create-fr-user/files. Edit roles/create-fr-user/tasks/main.yml
  to reflect the name of your pub key files
 
 ### Current Issues
 
 See https://github.com/ForgeRock/frstack/issues
+
+* haproxy needs to be setup to route to the OpenIDM end user UI
+
 
 ### TODO
 

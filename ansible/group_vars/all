@@ -1,21 +1,13 @@
 
 
-# Use a caching proxy server if possible to speed up re-installs
-# Comment these lines out if you do not have a proxy. Note that 
-# You need at least one dummy key in the map or ansible will complain so leave foo: bar in the map
-proxy_env:
-#  http_proxy: http://192.168.56.1:2001
-#  https_proxy: http://192.168.56.1:2001
-  foo: bar
-
 # default location of the staging directory relative to the guest
 staging_dir: "/vagrant/staging"
 
 # location of downloaded software zip files relative to the guest image
 # We try to keep this consistent across environments
 download_dir: "/var/tmp"
- 
-  
+
+
 # ForgeRock User. This account will run all non root s/w (openam, openidm, etc.)
 fr_user: fr
 ## home dir for fr user
@@ -24,7 +16,7 @@ home_dir: "/home/{{fr_user}}"
 # Top level where all s/w is installed
 install_root: /opt/ois
 
-# Java home on the guest. We use openjdk by default. This is the default location. 
+# Java home on the guest. We use openjdk by default. This is the default location.
 java_home: /etc/alternatives/jre_openjdk
 
 # Config defaults
@@ -46,7 +38,7 @@ openam_fqdn: openam.example.com
 # Site URL. This is the load balancer URL (haproxy) - not the URL of the openam instance
 openam_site_url: "https://{{ openam_fqdn }}:443/openam"
 # Port where internal am instance is running
-openam_server_port: 8080 
+openam_server_port: 8080
 
 # URL where OpenAM server is listening ready to be configured
 # This could be different than the above URL if we are going directly to
@@ -55,9 +47,9 @@ openam_config_base: "http://{{openam_fqdn}}:{{openam_server_port}}"
 
 ## todo: Put passwords in Ansible vault
 amadmin_password: password
-amldapuser_password: Passw0rd 
+amldapuser_password: Passw0rd
 
-# OpenAM config location within embedded OpenDJ 
+# OpenAM config location within embedded OpenDJ
 # TODO: Not used right now
 #openam_config_root: "dc=openam,dc=forgerock,dc=org"
 
@@ -69,7 +61,7 @@ opendj_basedn: "dc=example,dc=com"
 opendj_password: password
 
 opendj_host: "openam.example.com"
-opendj_dirmgr: "cn=Directory Manager" 
+opendj_dirmgr: "cn=Directory Manager"
 
 # These overide opendj role settings
 opendj_ldap_port: 389
@@ -90,7 +82,7 @@ embedded_dj_jmx_port: 11689
 
 ######
 
-# Tomcat 
+# Tomcat
 
 # Tomcat instance location
 # Note: This is the default Fedora location
