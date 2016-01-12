@@ -6,6 +6,4 @@ To run this example you need an opendj instance. Edit opendj-endpoint.yaml and p
 Assumes DJ has a top level dc=example,dc=com, and admin creds of cn=Directory Manager  / password
         xs
 
-todo: Create persistent volume mounts for OpenAM (using PD or NFS?). Use persistnt claims
-
-
+todo: Create persistent volume mounts for OpenAM (using PD or NFS?). Use persistent claims

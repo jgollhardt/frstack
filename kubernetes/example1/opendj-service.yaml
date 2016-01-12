@@ -13,5 +13,4 @@ spec:
   selector:
     name: opendj
 # Uncomment to access externally
-  createExternalLoadBalancer: true
-
+#  createExternalLoadBalancer: true
