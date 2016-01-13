@@ -1,18 +1,16 @@
-apiVersion: v1
-kind: ReplicationController
+apiVersion: extensions/v1beta1
+kind: Job
 metadata:
-  labels:
-    name: openam
-  name: openam
+  name: ssoconfig
 spec:
-  replicas: 1
   selector:
-    name: openam
+    matchLabels:
+      app: ssoconfig
   template:
     metadata:
+      name: ssoconfig
       labels:
-         name: openam
-         site: site1
+        app: ssoconfig
     spec:
       containers:
       - name: git-sync
@@ -27,23 +25,14 @@ spec:
             value: /config
           - name: GIT_SYNC_WAIT
             value: 60
-      - name: openam
-        image: wstrange/openam-nightly
-        ports:
-          - name: openam
-            containerPort: 8080
+      - name: ssoconfig
+        image: wstrange/ssoconfig-nightly:latest
         volumeMounts:
-          - name: openam-root
-            mountPath: /root/openam
-          - name: secrets
-            mountPath: /secrets
           - name: config
             mountPath: /config
+      restartPolicy: Never
       volumes:
         - name: secrets
           secret:
-            secretName: fr-secrets
-        - name: openam-root
-          emptyDir: {}
         - name: config
           emptyDir: {}

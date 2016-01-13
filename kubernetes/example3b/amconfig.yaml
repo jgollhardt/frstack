@@ -1,22 +1,22 @@
-apiVersion: v1
-kind: ReplicationController
+# Job that loads policies
+apiVersion: extensions/v1beta1
+kind: Job
 metadata:
-  labels:
-    name: openam
-  name: openam
+  name: amconfig
 spec:
-  replicas: 1
   selector:
-    name: openam
+    matchLabels:
+      app: amconfig
   template:
     metadata:
+      name: amconfig
       labels:
-         name: openam
-         site: site1
+        app: amconfig
     spec:
       containers:
       - name: git-sync
         image: gcr.io/google_containers/git-sync
+        imagePullPolicy: Always
         volumeMounts:
           - name: config
             mountPath: /config
@@ -26,24 +26,25 @@ spec:
           - name: GIT_SYNC_DEST
             value: /config
           - name: GIT_SYNC_WAIT
-            value: 60
-      - name: openam
-        image: wstrange/openam-nightly
-        ports:
-          - name: openam
-            containerPort: 8080
+            value: "60"
+      - name: amconfig
+        image: wstrange/amconfig:latest
+        env:
+          - name: OPENAM_URL
+            value: "http://openam:80/openam"
+          - name: OPENAM_USER
+            value: amadmin
+          - name: OPENAM_PW_FILE
+            value: /secrets/amadmin.pw
         volumeMounts:
-          - name: openam-root
-            mountPath: /root/openam
-          - name: secrets
-            mountPath: /secrets
           - name: config
             mountPath: /config
+          - name: secrets
+            mountPath: /secrets
+      restartPolicy: Never
       volumes:
         - name: secrets
           secret:
             secretName: fr-secrets
-        - name: openam-root
-          emptyDir: {}
         - name: config
           emptyDir: {}
