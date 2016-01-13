@@ -24,18 +24,18 @@ fi
 
 MVN_SNAPSHOT="http://maven.forgerock.org/repo/snapshots"
 
-AM_VERSION="13.0.0-SNAPSHOT"
+AM_VERSION="14.0.0-SNAPSHOT"
 # note trailing / is needed
 AM_SERVER_PATH="$MVN_SNAPSHOT/org/forgerock/openam/openam-server/$AM_VERSION/"
 AM_SSOTOOLS_PATH="$MVN_SNAPSHOT/org/forgerock/openam/openam-distribution-ssoadmintools/$AM_VERSION/"
 
-IDM_VERSION="4.0.0-SNAPSHOT"
+IDM_VERSION="4.1.0-SNAPSHOT"
 IDM_PATH="$MVN_SNAPSHOT/org/forgerock/openidm/openidm-zip/$IDM_VERSION/"
 
 IG_VERSION="4.0.0-SNAPSHOT"
 IG_PATH="$MVN_SNAPSHOT/org/forgerock/openig/openig-war/$IG_VERSION/"
 
-DJ_VERSION="3.0.0-SNAPSHOT"
+DJ_VERSION="4.0.0-SNAPSHOT"
 DJ_PATH="$MVN_SNAPSHOT/org/forgerock/opendj/opendj-server-legacy/$DJ_VERSION/"
 
 # Default GNU Grep to use Perl regex
@@ -60,7 +60,7 @@ download_file() {
       echo $1 | xargs curl -o $2
    else
       # File already downloaded. log this to the release file and to the console
-      echo "File $2 exists - Skipping. Delete this file if you really want to download it fresh" >>RELEASE
+      echo "File $2 exists - Skipping. Delete this file if you really want to download a fresh version" >>RELEASE
       echo $2 already downloaded. Skipping
    fi
 }
@@ -114,6 +114,3 @@ done
 
 echo "# Finished download at `date`" >> RELEASE
 exit 0
-
-
-
