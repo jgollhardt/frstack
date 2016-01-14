@@ -26,7 +26,7 @@ spec:
           - name: GIT_SYNC_DEST
             value: /config
           - name: GIT_SYNC_WAIT
-            value: 60
+            value: "60"
       - name: openam
         image: wstrange/openam-nightly
         ports:

@@ -24,7 +24,7 @@ spec:
           - name: GIT_SYNC_DEST
             value: /config
           - name: GIT_SYNC_WAIT
-            value: 60
+            value: "60"
       - name: ssoconfig
         image: wstrange/ssoconfig-nightly:latest
         volumeMounts:
