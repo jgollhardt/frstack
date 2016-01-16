@@ -16,7 +16,6 @@ spec:
       containers:
       - name: git-sync
         image: gcr.io/google_containers/git-sync
-        imagePullPolicy: Always
         volumeMounts:
           - name: config
             mountPath: /config
@@ -25,8 +24,10 @@ spec:
             value: https://github.com/ForgeRock/stack-config.git
           - name: GIT_SYNC_DEST
             value: /config
+          - name: GIT_SYNC_BRANCH
+            value: master
           - name: GIT_SYNC_WAIT
-            value: "60"
+            value: "120"
       - name: amconfig
         image: wstrange/amconfig:latest
         env:

@@ -2,27 +2,24 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   labels:
-    name: openam
-  name: openam
+    name: openidm
+  name: openidm
 spec:
   replicas: 1
   selector:
-    name: openam
+    name: openidm
   template:
     metadata:
       labels:
-         name: openam
-         site: site1
+         name: openidm
     spec:
       containers:
-      - name: openam
-        image: wstrange/openam-nightly
+      - name: openidm
+        image: wstrange/openidm-nightly
         ports:
-          - name: openam
+          - name: openidm
             containerPort: 8080
         volumeMounts:
-          - name: openam-root
-            mountPath: /root/openam
           - name: secrets
             mountPath: /secrets
       # - name: logging-sidecar
@@ -33,14 +30,12 @@ spec:
       #       memory: 200Mi
       #   env:
       #     - name: FILES_TO_COLLECT
-      #       value: "/mnt/openam/debug/CoreSystem /mnt/openam/log/access.csv"
+      #       value: "/mnt/openidm/debug/CoreSystem /mnt/openidm/log/access.csv"
       #   volumeMounts:
-      #     - name: openam-root
+      #     - name: openidm-root
       #       readOnly: true
       #       mountPath: /mnt
       volumes:
         - name: secrets
           secret:
             secretName: fr-secrets
-        - name: openam-root
-          emptyDir: {}
