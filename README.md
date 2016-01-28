@@ -4,6 +4,9 @@
 *NOTE: Currently in the process of modifying this to use Ansible 2.0.
 You must install Ansible 2 from source*
 
+Kubernetes assets have been moved to https://github.com/ForgeRock/fretes
+
+Docker images are at https://github.com/ForgeRock/docker
 
 This currently works on Fedora 23 using Vagrant. Google Compute Engine (GCE) and AWS are a
 work in progress. Other combinations have not been tested.
