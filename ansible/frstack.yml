@@ -18,7 +18,7 @@
   gather_facts: false
   tasks:
     - name: install packages for ansible support
-      raw: become dnf -y -e0 -d0 install python python-dnf
+      raw: sudo dnf -y -e0 -d0 install python python-dnf
 
 # These plays are common to all hosts in the stack. This installs basic packages, java, etc.
 # Put roles here that need to be run on every host in stack
