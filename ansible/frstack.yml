@@ -53,8 +53,7 @@
    - { role: opendj, tags: ["opendj"]}
    - { role: openidm, tags: ["openidm"]}
    - { role: openam,  tomcat_openam_dir: "{{tomcat_parent}}/openam", tags: ["openam"]}
-# Currently failing on new nightly builds. TODO: find out why
-#   - { role: ssoadm, tags: ["ssoadm"]}
+   - { role: ssoadm, tags: ["ssoadm"]}
    - { role: openig,  tags: ["openig"]}
    - { role: agent-apache, tags: ["agent", "apache", "agent-apache", "test"]}
 # Note that tomcat-agent install is currently not working.
