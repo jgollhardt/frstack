@@ -12,6 +12,9 @@
   
 - name: create password file
   copy: src=agentpw dest={{agent_instance_dir}}
+
+- name: create agent config file
+  copy: src=agent-config dest={{agent_instance_dir}}
   
 #- name: Copy license agreement so we don't get prompted
 #  copy: src=license.log dest={{agent_instance_dir}}/data
@@ -23,9 +26,15 @@
 - name: Stop tomcat 
   service: name="{{ tomcat_instance }}" state=stopped
 
+- name: Create agent config in openam using ssoadm
+  shell: "{{ install_root }}/ssoadmin/openam/bin/ssoadm create-agent --realm / --agentname {{ tomcat_instance }}  --agenttype J2EEAgent  --adminid amadmin --password-file {{ home_dir }}/etc/amadmin_pw --datafile {{ agent_instance_dir }}/agent-config"
+
 - name: Run agentadmin 
-  command: "{{agent_instance_dir}}/bin/agentadmin --acceptLicense --custom-install --useResponse {{agent_instance_dir}}/{{tomcat_instance}}-response.txt"
-  
+  command: "runuser -l {{fr_user}} -c '{{agent_instance_dir}}/bin/agentadmin --acceptLicense --custom-install --useResponse {{agent_instance_dir}}/{{tomcat_instance}}-response.txt'"
+
+- name: Create sample application
+  command: "runuser -l {{fr_user}} -c 'cp {{agent_instance_dir}}/sampleapp/dist/agentsample.war {{ tomcat_instance_dir }}/webapps'"
+
 - name: Start tomcat
   service: name={{ tomcat_instance }} state=started
   

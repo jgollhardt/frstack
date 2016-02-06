@@ -1,3 +1,6 @@
+com.iplanet.am.server.host=openam.example.com
+com.iplanet.am.server.port=443
+com.iplanet.am.server.protocol=https
 com.sun.identity.agents.config.cdsso.enable=false
 com.sun.identity.agents.config.get.client.host.name=false
 com.sun.identity.agents.config.profile.attribute.fetch.mode=NONE
