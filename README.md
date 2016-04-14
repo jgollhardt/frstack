@@ -1,5 +1,27 @@
 # Install the ForgeRock Open Identity Stack (OIS)
-#
+
+
+# Project Status
+
+This project is in maintenance mode and is not being actively
+developed.   I am happy to accept pull requests if you have fixes or enhancements.
+
+For a variety of reasons, I believe that using containers is a better long
+term approach to rapidly creating a complete stack. If you want to
+follow along with that work, please see this project:
+
+https://github.com/ForgeRock/fretes  
+
+Which contains Kubernetes manifests to run development instances of OpenAM,
+OpenDJ, and OpenIDM. That project uses Dockerfiles that are being maintained
+here:  https://stash.forgerock.org/login?next=/projects/DOCKER/repos/docker/browse
+
+You will need a ForgeRock.org community account to view that Stash repository.
+
+
+
+
+
 
 *NOTE: Currently in the process of modifying this to use Ansible 2.0.
 You must install Ansible 2 from source*
