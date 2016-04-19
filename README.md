@@ -1,5 +1,7 @@
 # Install the ForgeRock Open Identity Stack (OIS)
 
+## Warning
+**This code is not supported by ForgeRock and it is your responsibility to verify that the software is suitable and safe for use.**
 
 # Project Status
 
