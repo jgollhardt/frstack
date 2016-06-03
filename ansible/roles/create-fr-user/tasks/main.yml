@@ -5,8 +5,8 @@
   user: name=fr system=yes comment="ForgeRock Demo Account" shell='/bin/bash'
 
 # If you are running on a UNIX based system this should work...
-- name: Appending your ~/.ssh/id_rsa.pub key to the fr demo user 
-  authorized_key: user=fr key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+# - name: Appending your ~/.ssh/id_rsa.pub key to the fr demo user 
+#   authorized_key: user=fr key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
  
 # Add your .ssh key under files/ and update this command to include it.
 # This will allow you to ssh to the fr user account
