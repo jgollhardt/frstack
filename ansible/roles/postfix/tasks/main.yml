@@ -2,7 +2,7 @@
 # Install postfix to handle mail for OpenIDM, etc.
 
 - name: Install required packages
-  dnf: name={{item}} state=latest
+  yum: name={{item}} state=latest
   with_items:
    - postfix
    - mailx

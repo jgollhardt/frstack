@@ -2,7 +2,7 @@
 # This role installs Apache httpd on Redhat type image
 
 - name: Install Apache
-  dnf: name={{ item }} state=latest
+  yum: name={{ item }} state=latest
   with_items:
    - httpd
    - mod_ssl

@@ -14,11 +14,11 @@
 # Work on other platforms - but it needs work
 
 # This play is needed to install python2 on fedora 23
-- hosts: all
-  gather_facts: false
-  tasks:
-    - name: install packages for ansible support
-      raw: sudo dnf -y -e0 -d0 install python python-dnf
+# - hosts: all
+#   gather_facts: false
+#   tasks:
+#     - name: install packages for ansible support
+#       raw: sudo yum -y -e0 -d0 install python python-yum
 
 # These plays are common to all hosts in the stack. This installs basic packages, java, etc.
 # Put roles here that need to be run on every host in stack

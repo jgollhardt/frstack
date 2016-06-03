@@ -8,7 +8,7 @@
   copy: src=es.repo dest=/etc/yum.repos.d owner=root
 
 - name: Download and install logstash
-  dnf: name={{item}} state=latest
+  yum: name={{item}} state=latest
   with_items:
     - logstash
     - elasticsearch

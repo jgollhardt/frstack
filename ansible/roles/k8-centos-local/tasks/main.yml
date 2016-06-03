@@ -15,8 +15,8 @@
 # install docker.
 # Todo: ansible module currently has a bug with enablerepo
 # see https://github.com/ansible/ansible-modules-extras/issues/471
-#- dnf: name={{item}} state=latest enablerepo="updates-testing"
-- command: dnf install -y --enablerepo=updates-testing {{item}}
+#- yum: name={{item}} state=latest enablerepo="updates-testing"
+- command: yum install -y --enablerepo=updates-testing {{item}}
   with_items:
     - docker
     - etcd

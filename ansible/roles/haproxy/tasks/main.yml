@@ -10,7 +10,7 @@
 #  yum: name={{ download_dir }}/{{ haproxy_rpm }} state=present
 
 - name: Install haproxy
-  dnf: name=haproxy state=latest
+  yum: name=haproxy state=latest
 
 - name: create haproxy.cfg
   template: src=haproxy.cfg dest=/etc/haproxy/haproxy.cfg owner=root

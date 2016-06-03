@@ -11,7 +11,7 @@
 # Remove when Ansible 2.0 package lands
 # - name: Install Yum Utilities
 #   sudo: true
-#   shell: dnf install yum-utils -y
+#   shell: yum install yum-utils -y
 #   args:
 #     creates: /usr/bin/repomanage
 

@@ -9,7 +9,7 @@
 
 
 - name: Install tomcat
-  dnf: name=tomcat state=latest
+  yum: name=tomcat state=latest
 
 - name: create instance dir and sub dir
   command: mkdir -p "{{ tomcat_parent }}/{{ tomcat_instance }}/{{item}}"
